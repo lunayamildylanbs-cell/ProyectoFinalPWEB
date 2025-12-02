@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KFCZONE - Tienda</title>
+  <link rel="stylesheet" href="/ProyectoFinalPWI/Archivos CSS/tienda.css">
+</head>
+<body>
+
+<header class="encabezado">
+  <div class="contenedor encabezado-interno">
+    <a href="tienda.html" class="logo">KFCZONE</a>
+
+    <nav class="navegacion-principal">
+      <a href="tienda.html" class="enlace-nav activo">Tienda</a>
+      <a href="explorar.html" class="enlace-nav">Explorar</a>
+      <a href="ofertas.html" class="enlace-nav">Ofertas</a>
+    </nav>
+
+    <div class="zona-acciones">
+      <form action="buscar.html" method="get" class="form-buscar">
+        <input name="q" type="search" class="buscar" placeholder="Buscar juegos">
+        <button type="submit" class="btn-icon">🔎</button>
+      </form>
+
+      <a href="carrito.html" class="btn-icon">🛒</a>
+      <a href="login.html" class="btn-icon">👤</a>
+    </div>
+  </div>
+</header>
+
+<main class="contenedor">
+
+  <section id="seccion-destacado" class="destacado"></section>
+
+  <section class="ofertas-especiales">
+    <div class="cabecera-seccion">
+      <h2>Ofertas Especiales</h2>
+      <a href="ofertas.html" class="ver-todas">Ver todas →</a>
+    </div>
+
+    <div id="lista-ofertas" class="rejilla-ofertas"></div>
+  </section>
+
+  <section class="nuevos-top">
+
+    <div class="nuevos">
+      <div class="cabecera-seccion">
+        <h3> Nuevos Lanzamientos</h3>
+        <a href="explorar.html" class="ver-mas">Ver mas →</a>
+      </div>
+
+      <div id="lista-nuevos" class="lista-nuevos"></div>
+    </div>
+
+    <aside class="top-ventas">
+      <h3> Top Ventas</h3>
+      <ol id="lista-top" class="lista-top"></ol>
+
+      <div class="botones-rapidos">
+        <a href="ofertas.html" class="btn-ghost"> Ofertas Especiales</a>
+        <a href="explorar.html" class="btn-ghost"> Catalogo Completo</a>
+        <a href="explorar.html?orden=mejor-valorados" class="btn-ghost"> Mejor Valorados</a>
+        <a href="explorar.html?filtro=proximamente" class="btn-ghost"> Proximamente</a>
+      </div>
+    </aside>
+
+  </section>
+
+  <section class="categorias">
+    <h3>Explorar por categoria</h3>
+    <div class="rejilla-categorias">
+      <a href="explorar.html?categoria=Action" class="categoria">Accion<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=Adventure" class="categoria">Aventura<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=RPG" class="categoria">RPG<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=Shooter" class="categoria">Shooter<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=Strategy" class="categoria">Estrategia<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=Indie" class="categoria">Indie<br><small>Ver juegos</small></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie-pagina">
+  <div class="contenedor pie-grid">
+    <div class="col">
+      <h4>Sobre KFCZONE</h4>
+      <p>Tu tienda de videojuegos de confianza YAAA</p>
+    </div>
+
+    <div class="col">
+      <h4>Tienda</h4>
+      <a href="tienda.html">Catalogo</a><br>
+      <a href="ofertas.html">Ofertas</a><br>
+      <a href="explorar.html">Explorar</a><br>
+      <a href="carrito.html">Carrito</a>
+    </div>
+
+    <div class="col">
+      <h4>Soporte</h4>
+      <span>Centro de Ayuda</span><br>
+      <span>Contacto</span><br>
+    </div>
+
+    <div class="col">
+      <h4>Legal</h4>
+      <span>Terminos</span><br>
+      <span>Politica de Privacidad</span><br>
+    </div>
+  </div>
+</footer>
+
+<script src="/ProyectoFinalPWI/Archivos JS/tienda.js"></script>
+
+</body>
+</html>

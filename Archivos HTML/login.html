@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFCZONE - Iniciar sesion</title>
+    <link rel="stylesheet" href="/ProyectoFinalPWI/Archivos CSS/login.css">
+</head>
+<body>
+
+<header class="encabezado">
+  <div class="contenedor encabezado-interno">
+    <a href="tienda.html" class="logo">KFCZONE</a>
+
+    <nav class="navegacion-principal">
+      <a href="tienda.html" class="enlace-nav activo">Tienda</a>
+      <a href="explorar.html" class="enlace-nav">Explorar</a>
+      <a href="ofertas.html" class="enlace-nav">Ofertas</a>
+    </nav>
+
+    <div class="zona-acciones">
+      <form action="buscar.html" method="get" class="form-buscar">
+        <input name="q" type="search" class="buscar" placeholder="Buscar juegos">
+        <button type="submit" class="btn-icon">🔎</button>
+      </form>
+
+      <a href="carrito.html" class="btn-icon">🛒</a>
+      <a href="login.html" class="btn-icon">👤</a>
+    </div>
+  </div>
+</header>
+
+<main class="contenedor login-contenido">
+  <section class="tarjeta-login">
+    
+    <h1>Bienvenido de nuevo</h1>
+    <p>Inicia sesion para continuar</p>
+
+    <form id="form-login" class="form-login">
+
+      <label for="correo">Correo Electronico</label>
+      <input id="correo" type="email" placeholder="tu@email.com" required>
+
+      <label for="contraseña">Contraseña</label>
+      <input id="contraseña" type="password" placeholder="*******" required>
+
+      <div class="fila-opciones">
+        <label class="check">
+          <input type="checkbox" id="recordar"> Recordarme
+        </label>
+        <a href="recuperar-contraseña.html" class="link">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <button type="submit" class="btn-principal">Iniciar Sesion</button>
+
+    </form>
+
+    <p class="texto-login">
+      ¿No tienes una cuenta? <a href="registro.html">Crear cuenta</a>
+    </p>
+
+    <p class="texto-legal">
+      Al iniciar sesion, aceptas nuestros terminos de servicio</a> y politica de privacidad</a>
+    </p>
+
+  </section>
+</main>
+
+<footer class="pie-pagina">
+  <div class="contenedor pie-grid">
+    <div class="col">
+      <h4>Sobre KFCZONE</h4>
+      <p>Tu tienda de videojuegos de confianza YAAA</p>
+    </div>
+
+    <div class="col">
+      <h4>Tienda</h4>
+      <a href="tienda.html">Catalogo</a><br>
+      <a href="ofertas.html">Ofertas</a><br>
+      <a href="explorar.html">Explorar</a><br>
+      <a href="carrito.html">Carrito</a>
+    </div>
+
+    <div class="col">
+      <h4>Soporte</h4>
+      <span>Centro de Ayuda</span><br>
+      <span>Contacto</span><br>
+    </div>
+
+    <div class="col">
+      <h4>Legal</h4>
+      <span>Terminos</span><br>
+      <span>Politica de Privacidad</span><br>
+    </div>
+  </div>
+</footer>
+
+<script src="/ProyectoFinalPWI/Archivos JS/login.js"></script>
+
+</body>
+</html>

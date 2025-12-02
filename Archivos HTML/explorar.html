@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFCZONE - Explorar</title>
+    <link rel="stylesheet" href="/ProyectoFinalPWI/Archivos CSS/explorar.css">
+</head>
+<body>
+
+<header class="encabezado">
+  <div class="contenedor encabezado-interno">
+    <a href="tienda.html" class="logo">KFCZONE</a>
+
+    <nav class="navegacion-principal">
+      <a href="tienda.html" class="enlace-nav activo">Tienda</a>
+      <a href="explorar.html" class="enlace-nav">Explorar</a>
+      <a href="ofertas.html" class="enlace-nav">Ofertas</a>
+    </nav>
+
+    <div class="zona-acciones">
+      <form action="buscar.html" method="get" class="form-buscar">
+        <input name="q" type="search" class="buscar" placeholder="Buscar juegos">
+        <button type="submit" class="btn-icon">🔎</button>
+      </form>
+
+      <a href="carrito.html" class="btn-icon">🛒</a>
+      <a href="login.html" class="btn-icon">👤</a>
+    </div>
+  </div>
+</header>
+
+<main class="contenedor">
+  <h1 class="titulo-pagina">Explorar juegos</h1>
+  <p class="subtitulo">Filtra por genero plataforma y ordena resultados</p>
+
+  <section class="filtros">
+    <form action="#" method="get" class="form-filtros" aria-label="Formulario de filtros">
+
+      <label class="label-filtro">Genero
+        <select name="genero">
+          <option value="">Todos</option>
+          <option value="action">Accion</option>
+          <option value="rpg">RPG</option>
+          <option value="shooter">Shooter</option>
+          <option value="adventure">Aventura</option>
+        </select>
+      </label>
+
+      <label class="label-filtro">Plataforma
+        <select name="plataforma">
+          <option value="">Todas</option>
+          <option value="pc">PC</option>
+          <option value="switch">Nintendo Switch</option>
+          <option value="playstation">PlayStation</option>
+          <option value="xbox">Xbox</option>
+        </select>
+      </label>
+
+      <label class="label-filtro">Ordenar por
+        <select name="orden">
+          <option value="">Relevancia</option>
+          <option value="ventas">Mas vendidos</option>
+          <option value="puntuacion">Mejor puntuacion</option>
+        </select>
+      </label>
+
+      <button type="submit" class="btn-principal">Aplicar filtros</button>
+    </form>
+  </section>
+
+  <section class="rejilla-juegos" id="contenedor-juegos">
+  </section>
+
+</main>
+
+<footer class="pie-pagina">
+  <div class="contenedor pie-grid">
+    <div class="col">
+      <h4>Sobre KFCZONE</h4>
+      <p>Tu tienda de videojuegos de confianza YAAA</p>
+    </div>
+
+    <div class="col">
+      <h4>Tienda</h4>
+      <a href="tienda.html">Catalogo</a><br>
+      <a href="ofertas.html">Ofertas</a><br>
+      <a href="explorar.html">Explorar</a><br>
+      <a href="carrito.html">Carrito</a>
+    </div>
+
+    <div class="col">
+      <h4>Soporte</h4>
+      <span>Centro de Ayuda</span><br>
+      <span>Contacto</span><br>
+    </div>
+
+    <div class="col">
+      <h4>Legal</h4>
+      <span>Terminos</span><br>
+      <span>Politica de Privacidad</span><br>
+    </div>
+  </div>
+</footer>
+
+<script src="/ProyectoFinalPWI/Archivos JS/explorar.js"></script>
+
+</body>
+</html>
