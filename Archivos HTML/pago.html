@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFCZONE - Pago</title>
+    <link rel="stylesheet" href="/ProyectoFinalPWI/Archivos CSS/pago.css">
+</head>
+<body>
+
+<header class="encabezado">
+  <div class="contenedor encabezado-interno">
+    <a href="tienda.html" class="logo">KFCZONE</a>
+
+    <nav class="navegacion-principal">
+      <a href="tienda.html" class="enlace-nav activo">Tienda</a>
+      <a href="explorar.html" class="enlace-nav">Explorar</a>
+      <a href="ofertas.html" class="enlace-nav">Ofertas</a>
+    </nav>
+
+    <div class="zona-acciones">
+      <form action="buscar.html" method="get" class="form-buscar">
+        <input name="q" type="search" class="buscar" placeholder="Buscar juegos">
+        <button type="submit" class="btn-icon">🔎</button>
+      </form>
+
+      <a href="carrito.html" class="btn-icon">🛒</a>
+      <a href="login.html" class="btn-icon">👤</a>
+    </div>
+  </div>
+</header>
+
+<main class="contenedor" id="contenedor-pago">
+
+    <h2>Metodo de pago</h2>
+
+    <div id="mensaje-vacio" class="mensaje-vacio" style="display:none;">
+        <p>Tu carrito esta vacio Agrega algunos juegos increibles a tu coleccion</p>
+        <a href="tienda.html" class="btn-principal">Explorar Catalogo</a>
+    </div>
+
+    <div id="metodos-pago" class="metodos-pago" style="display:none">
+
+        <div class="total-carrito">
+            <p>Total: $<span id="total-pago">0.00</span></p>
+        </div>
+
+        <div class="opciones-pago">
+            <button class="btn-pago" data-metodo="tarjeta">Tarjeta de credito</button>
+            <button class="btn-pago" data-metodo="paypal">PayPal</button>
+        </div>
+    </div>
+
+    <div id="resultado-pago" class="resultado-pago"></div>
+</main>
+
+<footer class="pie-pagina">
+  <div class="contenedor pie-grid">
+    <div class="col">
+      <h4>Sobre KFCZONE</h4>
+      <p>Tu tienda de videojuegos de confianza YAAA</p>
+    </div>
+
+    <div class="col">
+      <h4>Tienda</h4>
+      <a href="tienda.html">Catalogo</a><br>
+      <a href="ofertas.html">Ofertas</a><br>
+      <a href="explorar.html">Explorar</a><br>
+      <a href="carrito.html">Carrito</a>
+    </div>
+
+    <div class="col">
+      <h4>Soporte</h4>
+      <span>Centro de Ayuda</span><br>
+      <span>Contacto</span><br>
+    </div>
+
+    <div class="col">
+      <h4>Legal</h4>
+      <span>Terminos</span><br>
+      <span>Politica de Privacidad</span><br>
+    </div>
+  </div>
+</footer>
+
+<script src="/ProyectoFinalPWI/Archivos JS/pago.js"></script>
+
+</body>
+</html>
