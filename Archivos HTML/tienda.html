@@ -30,26 +30,14 @@
   </div>
 </header>
 
-<<<<<<< HEAD
-<main class="contenedor">
-  <h1 class="titulo-principal">Tienda de juegos KFCZONE</h1>
-  <section id="seccion-destacado" class="destacado"></section>
-=======
-<!-- error si la api no responde -->
-<div id="mensaje-api" class="mensaje-api" style="display:none;">
-  Error al cargar datos. Revisar conexion o intentar mas tarde.
-</div>
-
 <main class="contenedor">
   <h1 class="titulo-principal">Tienda de juegos KFCZONE</h1>
   <section id="seccion-destacado" class="destacado">
-
-    <!-- cuando no hay destacado -->
-    <div id="mensaje-destacado" class="mensaje-error" style="display:none;">
-      No se encontro juego destacado
-    </div>
+      <div class="placeholder">
+          <h3> Juego destacado no encontrado</h3>
+          <p> No se pudo cargar la informacion del juego</p>
+      </div>
   </section>
->>>>>>> 6b4486b (2da version estructura html / errores al no conectar con la api)
 
   <section class="ofertas-especiales">
     <div class="cabecera-seccion">
@@ -57,11 +45,11 @@
       <a href="ofertas.html" class="ver-todas">Ver todas →</a>
     </div>
 
-    <div id="lista-ofertas" class="rejilla-ofertas"></div>
-
-    <!-- si no hay ofertas -->
-    <div id="mensaje-ofertas" class="mensaje-error" style="display:none;">
-      No hay ofertas disponibles en este momento
+    <div id="lista-ofertas" class="rejilla-ofertas">
+        <div class="placeholder">
+            <h4> No hay ofertas disponibles</h4>
+            <p> No se pudo cargar la lista de juegos</p>
+        </div>
     </div>
   </section>
 
@@ -73,22 +61,20 @@
         <a href="explorar.html" class="ver-mas">Ver mas →</a>
       </div>
 
-      <div id="lista-nuevos" class="lista-nuevos"></div>
-
-      <!-- si no hay nuevos juegos -->
-      <div id="mensaje-nuevos" class="mensaje-error" style="display:none;">
-        No hay nuevos lanzamientos disponibles
+      <div id="lista-nuevos" class="lista-nuevos">
+          <div class="placeholder">
+              <h4> No se encontraron nuevos lanzamientos</h4>
+              <p> Error al cargar el nuevo lanzamiento</p>
+          </div>
       </div>
     </div>
 
     <aside class="top-ventas">
-      <h3> Top Ventas</h3>
-      <ol id="lista-top" class="lista-top"></ol>
+      <h3>Top Ventas</h3>
 
-      <!-- si no hay top ventas -->
-      <div id="mensaje-top" class="mensaje-error" style="display:none;">
-        No hay juegos en la lista de top ventas
-      </div>
+      <ol id="lista-top" class="lista-top">
+          <li> No se pudo cargar el top de ventas</li>
+      </ol>
 
       <div class="botones-rapidos">
         <a href="ofertas.html" class="btn-ghost"> Ofertas Especiales</a>
@@ -108,8 +94,6 @@
       <a href="explorar.html?categoria=RPG" class="categoria">RPG<br><small>Ver juegos</small></a>
       <a href="explorar.html?categoria=Shooter" class="categoria">Shooter<br><small>Ver juegos</small></a>
       <a href="explorar.html?categoria=Strategy" class="categoria">Estrategia<br><small>Ver juegos</small></a>
-      <a href="explorar.html?categoria=Indie" class="categoria">Indie<br><small>Ver juegos</small></a>
-
     </div>
   </section>
 
