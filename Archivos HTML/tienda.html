@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,9 +30,20 @@
   </div>
 </header>
 
-<main class="contenedor">
+<!-- error si la api no responde -->
+<div id="mensaje-api" class="mensaje-api" style="display:none;">
+  Error al cargar datos. Revisar conexion o intentar mas tarde.
+</div>
 
-  <section id="seccion-destacado" class="destacado"></section>
+<main class="contenedor">
+  <h1 class="titulo-principal">Tienda de juegos KFCZONE</h1>
+  <section id="seccion-destacado" class="destacado">
+    
+    <!-- cuando no hay destacado -->
+    <div id="mensaje-destacado" class="mensaje-error" style="display:none;">
+      No se encontro juego destacado
+    </div>
+  </section>
 
   <section class="ofertas-especiales">
     <div class="cabecera-seccion">
@@ -41,28 +52,43 @@
     </div>
 
     <div id="lista-ofertas" class="rejilla-ofertas"></div>
+
+    <!-- si no hay ofertas -->
+    <div id="mensaje-ofertas" class="mensaje-error" style="display:none;">
+      No hay ofertas disponibles en este momento
+    </div>
   </section>
 
   <section class="nuevos-top">
 
     <div class="nuevos">
       <div class="cabecera-seccion">
-        <h3> Nuevos Lanzamientos</h3>
+        <h3>Nuevos Lanzamientos</h3>
         <a href="explorar.html" class="ver-mas">Ver mas →</a>
       </div>
 
       <div id="lista-nuevos" class="lista-nuevos"></div>
+
+      <!-- si no hay nuevos juegos -->
+      <div id="mensaje-nuevos" class="mensaje-error" style="display:none;">
+        No hay nuevos lanzamientos disponibles
+      </div>
     </div>
 
     <aside class="top-ventas">
-      <h3> Top Ventas</h3>
+      <h3>Top Ventas</h3>
       <ol id="lista-top" class="lista-top"></ol>
 
+      <!-- si no hay top ventas -->
+      <div id="mensaje-top" class="mensaje-error" style="display:none;">
+        No hay juegos en la lista de top ventas
+      </div>
+
       <div class="botones-rapidos">
-        <a href="ofertas.html" class="btn-ghost"> Ofertas Especiales</a>
-        <a href="explorar.html" class="btn-ghost"> Catalogo Completo</a>
-        <a href="explorar.html?orden=mejor-valorados" class="btn-ghost"> Mejor Valorados</a>
-        <a href="explorar.html?filtro=proximamente" class="btn-ghost"> Proximamente</a>
+        <a href="ofertas.html" class="btn-ghost">Ofertas Especiales</a>
+        <a href="explorar.html" class="btn-ghost">Catalogo Completo</a>
+        <a href="explorar.html?orden=mejor-valorados" class="btn-ghost">Mejor Valorados</a>
+        <a href="explorar.html?filtro=proximamente" class="btn-ghost">Proximamente</a>
       </div>
     </aside>
 
