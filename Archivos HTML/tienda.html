@@ -30,9 +30,26 @@
   </div>
 </header>
 
+<<<<<<< HEAD
 <main class="contenedor">
   <h1 class="titulo-principal">Tienda de juegos KFCZONE</h1>
   <section id="seccion-destacado" class="destacado"></section>
+=======
+<!-- error si la api no responde -->
+<div id="mensaje-api" class="mensaje-api" style="display:none;">
+  Error al cargar datos. Revisar conexion o intentar mas tarde.
+</div>
+
+<main class="contenedor">
+  <h1 class="titulo-principal">Tienda de juegos KFCZONE</h1>
+  <section id="seccion-destacado" class="destacado">
+
+    <!-- cuando no hay destacado -->
+    <div id="mensaje-destacado" class="mensaje-error" style="display:none;">
+      No se encontro juego destacado
+    </div>
+  </section>
+>>>>>>> 6b4486b (2da version estructura html / errores al no conectar con la api)
 
   <section class="ofertas-especiales">
     <div class="cabecera-seccion">
@@ -41,6 +58,11 @@
     </div>
 
     <div id="lista-ofertas" class="rejilla-ofertas"></div>
+
+    <!-- si no hay ofertas -->
+    <div id="mensaje-ofertas" class="mensaje-error" style="display:none;">
+      No hay ofertas disponibles en este momento
+    </div>
   </section>
 
   <section class="nuevos-top">
@@ -52,11 +74,21 @@
       </div>
 
       <div id="lista-nuevos" class="lista-nuevos"></div>
+
+      <!-- si no hay nuevos juegos -->
+      <div id="mensaje-nuevos" class="mensaje-error" style="display:none;">
+        No hay nuevos lanzamientos disponibles
+      </div>
     </div>
 
     <aside class="top-ventas">
       <h3> Top Ventas</h3>
       <ol id="lista-top" class="lista-top"></ol>
+
+      <!-- si no hay top ventas -->
+      <div id="mensaje-top" class="mensaje-error" style="display:none;">
+        No hay juegos en la lista de top ventas
+      </div>
 
       <div class="botones-rapidos">
         <a href="ofertas.html" class="btn-ghost"> Ofertas Especiales</a>
@@ -77,6 +109,7 @@
       <a href="explorar.html?categoria=Shooter" class="categoria">Shooter<br><small>Ver juegos</small></a>
       <a href="explorar.html?categoria=Strategy" class="categoria">Estrategia<br><small>Ver juegos</small></a>
       <a href="explorar.html?categoria=Indie" class="categoria">Indie<br><small>Ver juegos</small></a>
+
     </div>
   </section>
 
