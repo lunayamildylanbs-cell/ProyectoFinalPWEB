@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KFCZONE - Carrito</title>
-    <link rel="stylesheet" href="/ProyectoFinalPWI/Archivos CSS/carrito.css">
+    <link rel="stylesheet" href="/Archivos CSS/carrito.css">
 </head>
 <body>
 
 <header class="encabezado">
   <div class="contenedor encabezado-interno">
-    <a href="tienda.html" class="logo">KFCZONE</a>
+    <a href="tienda.html" class="logo">
+      <img src="/Archivos IMG/logo.png" alt="KFCZONE Logo" class="logo-KFCZONE">
+    </a>
 
     <nav class="navegacion-principal">
-      <a href="tienda.html" class="enlace-nav activo">Tienda</a>
-      <a href="explorar.html" class="enlace-nav">Explorar</a>
-      <a href="ofertas.html" class="enlace-nav">Ofertas</a>
+      <a href="tienda.html" class="enlace-nav">TIENDA</a>
+      <a href="explorar.html" class="enlace-nav">EXPLORAR</a>
+      <a href="ofertas.html" class="enlace-nav">OFERTAS</a>
     </nav>
 
     <div class="zona-acciones">
@@ -33,27 +35,25 @@
 <main class="contenedor carrito-contenido">
 
   <h1>Carrito de compras</h1>
+  <div class="carrito-vacio">
+    <img src="/Archivos IMG/carrito-compras.png" class="carrito-vacio" alt="carrito vacio">
 
-  <section id="carrito-vacio" class="carrito-vacio">
     <h2>Tu carrito esta vacio</h2>
-    <p>Agrega algunos juegos increibles a tu coleccion</p>
-    <a href="tienda.html" class="btn-principal">Explorar catalogo</a>
-  </section>
+    <p>Parece que aun no agregaste productos</p>
+    <a href="/ProyectoFinalPWI/tienda.html" class="btn-principal">Explorar juegos</a>
+</div>
 
-  <section id="carrito-lleno" class="grid-carrito">
-    <div class="lista-productos" id="lista-carrito"></div>
+<div id="metodos-pago" class="metodos-pago">
+        <div class="total-carrito">
+            <p>Total: $<span id="total-pago">0.00</span></p>
+        </div>
 
-    <aside class="resumen-pedido">
-      <h2>Resumen</h2>
+        <div class="opciones-pago">
+            <button class="btn-pago" data-metodo="tarjeta"> Tarjeta de credito</button>
+            <button class="btn-pago" data-metodo="paypal"> PayPal</button>
+        </div>
+    </div>
 
-      <p><strong>Subtotal:</strong> <span id="subtotal"></span></p>
-      <p><strong>Impuestos:</strong> <span id="impuestos"></span></p>
-      <p><strong>Total:</strong> <span id="total"></span></p>
-
-      <a href="pago.html" class="btn-principal">Pagar</a>
-      <a href="tienda.html" class="btn-secundario">Seguir comprando</a>
-    </aside>
-  </section>
 
 </main>
 
@@ -86,7 +86,7 @@
   </div>
 </footer>
 
-<script src="/ProyectoFinalPWI/Archivos JS/carrito.js"></script>
+<script src="/Archivos JS/carrito.js"></script>
 
 </body>
 </html>
