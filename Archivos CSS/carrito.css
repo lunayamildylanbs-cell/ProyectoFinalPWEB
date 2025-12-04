@@ -1,0 +1,276 @@
+/* reset normaliza márgenes padding y box sizing */
+* { 
+  margin:0; 
+  padding:0; 
+  box-sizing:border-box; 
+}
+html,body { 
+  height:100%; 
+}
+
+/* estilos principales body fuente color texto fondo */
+body {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  color:#eee;
+  background:#000;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+
+/* variables colores bordes botones y fondos */
+:root{
+  --tam-max:1200px;      
+  --tam:20px;            
+  --primario:#ff3b3b;    
+  --secundario:#ccc;      
+  --terciario:#444;       
+  --cuaternario:#111;    
+  --radio:6px;            
+}
+
+/* contenedor central con margen automatico y padding */
+.contenedor {
+  width: calc(100% - 40px);
+  max-width: var(--tam-max);
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* encabezado principal con fondo oscuro y borde inferior */
+.encabezado {
+  border-bottom: 1px solid var(--terciario);
+  background: var(--cuaternario);
+}
+.encabezado .encabezado-interno {
+  max-width: var(--tam-max);
+  margin: 0 auto;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tam);
+}
+
+/* logo dentro del header */
+.logo-KFCZONE {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+/* menu de navegacion con enlaces y efectos de hover */
+.navegacion-principal {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-left: 10px;
+}
+.navegacion-principal .enlace-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border: 1px solid var(--terciario);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--secundario);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.navegacion-principal .enlace-nav.activo {
+  background: var(--primario);
+  color: #fff;
+  border-color: var(--primario);
+}
+.navegacion-principal .enlace-nav:hover {
+  color: #fff;
+  background: #ff5555;
+  transform: scale(1.1);
+
+}
+
+/* zona de acciones del header, incluye buscador y botones */
+.zona-acciones {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-left: auto;
+}
+
+
+.buscar {
+  border: 0;
+  outline: 0;
+  padding: 6px 8px;
+  width: 200px;
+  font-size: 14px;
+  color: #eee;
+  background: var(--cuaternario);
+}
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--terciario);
+  background: transparent;
+  padding: 6px 8px;
+  border-radius: var(--radio);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--secundario);
+  transition: all 0.3s ease;
+
+
+}
+.btn-icon:hover {
+  color: #fff;
+  background: var(--primario);
+  transform: scale(1.15);
+}
+
+/* titulo principal carrito */
+.carrito-contenido h1 {
+  text-align:center;
+  font-size:26px;
+  font-weight:700;
+  margin-bottom:40px;
+  color:#fff;
+}
+
+
+/* carrito vacio mensaje y boton */
+.carrito-vacio { 
+  text-align:center; 
+  padding:120px 0; 
+}
+.carrito-vacio h2 { 
+  font-size:22px; 
+  font-weight:700; 
+  margin-bottom:10px; 
+  color:#fff; 
+}
+.carrito-vacio p { 
+  font-size:14px; 
+  color:var(--secundario); 
+  margin-bottom:22px; 
+
+}
+
+.carrito-vacio .btn-principal {
+  display:inline-block;
+  background:var(--primario);
+  color:#fff;
+  padding:12px 22px;
+  font-size:14px;
+  font-weight:700;
+  border-radius:4px;
+  text-decoration:none;
+  transition: all 0.3s ease;
+}
+.carrito-vacio .btn-principal:hover { 
+  background:#fff; 
+  color:var(--primario); 
+
+}
+
+/* imagen carrito vacio */
+.carrito-vacio img.carrito-vacio {
+  width:160px; 
+  height:auto; 
+  display:block; 
+  margin:0 auto; 
+  opacity:0.9; 
+}
+
+/* metodos de pago contenedor y botones */
+#metodos-pago {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+}
+.total-carrito { 
+  font-size: 20px; 
+  font-weight: 700; 
+  color: var(--primario); 
+}
+.opciones-pago { 
+  display: flex; 
+  gap: 15px; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+
+}
+.btn-pago {
+  background: var(--primario);
+  color: #fff;
+  border: 1px solid var(--primario);
+  border-radius: 6px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-pago:hover { 
+  background: var(--cuaternario); 
+  color: var(--primario); 
+  border-color: var(--primario); 
+
+}
+
+
+/* pie de pagina footer */
+.pie-pagina {
+  border-top:1px solid var(--terciario);
+  margin-top:40px;
+  padding:28px 0;
+  background: var(--cuaternario);
+
+}
+.pie-grid {
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:18px;
+}
+
+.pie-grid .col h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.pie-grid .col a,
+.pie-grid .col span,
+.pie-grid .col p {
+  color: var(--secundario);
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.pie-grid .col a:hover,
+.pie-grid .col span:hover {
+  color: #fff;
+  transform: scale(1.05);
+
+
+}
+
+/* responsive adaptaciones pantallas medianas y pequeñas */
+@media (max-width: 820px) { 
+  .carrito-vacio { padding:90px 0; } 
+}
+@media (max-width: 640px) {
+  .carrito-vacio { padding:70px 0; }
+  .carrito-contenido h1 { font-size:22px; }
+  .carrito-vacio h2 { font-size:20px; }
+  #metodos-pago { margin-top:40px; gap:15px; }
+  .total-carrito { font-size:18px; }
+  .btn-pago { padding:10px 18px; font-size:13px; }
+}

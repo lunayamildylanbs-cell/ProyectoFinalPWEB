@@ -1,0 +1,320 @@
+/* reset normaliza márgenes padding y box sizing */
+* { 
+  margin:0; 
+  padding:0; 
+  box-sizing:border-box; 
+}
+
+/* estilos principales body fuente color texto fondo */
+body {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  color:#eee;
+  background:#000;
+  -webkit-font-smoothing: antialiased;
+  line-height:1.45;
+}
+
+/* variables colores bordes botones y fondos */
+:root {
+  --tam-max:1200px;   
+  --tam:20px;             
+  --primario:#ff3b3b;   
+  --secundario:#ccc;       
+  --terciario:#444;      
+  --cuaternario:#111;     
+  --radio:6px;              
+}
+
+/* contenedor central con margen automatico y padding */
+.contenedor {
+  width: calc(100% - 40px);
+  max-width: var(--tam-max);
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* encabezado principal con fondo oscuro y borde inferior */
+.encabezado {
+  border-bottom: 1px solid var(--terciario);
+  background: var(--cuaternario);
+}
+.encabezado .encabezado-interno {
+  max-width: var(--tam-max);
+  margin: 0 auto;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tam);
+}
+
+/* logo dentro del header */
+.logo-KFCZONE {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+/* menu de navegacion con enlaces y efectos de hover */
+.navegacion-principal {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-left: 10px;
+}
+.navegacion-principal .enlace-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border: 1px solid var(--terciario);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--secundario);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.navegacion-principal .enlace-nav.activo {
+  background: var(--primario);
+  color: #fff;
+  border-color: var(--primario);
+}
+.navegacion-principal .enlace-nav:hover {
+  color: #fff;
+  background: #ff5555;
+  transform: scale(1.1);
+
+}
+
+/* zona de acciones del header, incluye buscador y botones */
+.zona-acciones {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-left: auto;
+
+}
+.buscar {
+  border: 0;
+  outline: 0;
+  padding: 6px 8px;
+  width: 200px;
+  font-size: 14px;
+  color: #eee;
+  background: var(--cuaternario);
+}
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--terciario);
+  background: transparent;
+  padding: 6px 8px;
+  border-radius: var(--radio);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--secundario);
+  transition: all 0.3s ease;
+
+}
+.btn-icon:hover {
+  color: #fff;
+  background: var(--primario);
+  transform: scale(1.15);
+
+}
+
+/* titulos y subtitulos pagina explorar */
+.header-explorar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:26px;
+}
+
+.titulo-pagina {
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:6px;
+  color:#fff;
+}
+.subtitulo {
+  color:var(--secundario);
+}
+
+/* ordenar por boton y select */
+.label-filtro, .ordenar-btn {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+  font-weight:600;
+  color:#eee;
+}
+
+.label-filtro select, .ordenar-btn select {
+  padding:6px 10px;
+  border:1px solid var(--terciario);
+  border-radius:4px;
+  font-size:14px;
+  background: var(--cuaternario);
+  color:#eee;
+  border:0;
+  outline:none;
+  background:transparent;
+}
+
+.ordenar-btn:hover {
+  background:#222;
+  transform: scale(1.05);
+
+}
+
+/* layout explorar con grid filtros y contenido */
+.layout-explorar {
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:26px;
+  margin-top:10px;
+}
+
+/* filtros de los contenedores y formularios */
+.filtros input[type="checkbox"] {
+  accent-color: var(--primario);
+  background: var(--cuaternario);
+  border: 1px solid var(--terciario);
+  width:16px;
+  height:16px;
+  cursor:pointer;
+
+}
+
+/* quitar fondo para que quede oscuro */
+.filtros fieldset {
+  background: var(--cuaternario);
+  border:1px solid var(--terciario);
+  border-radius: var(--radio);
+  padding:12px;
+
+}
+
+.form-filtros {
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+.grupo-filtro {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+
+
+}
+.grupo-filtro legend {
+  font-weight:700;
+  font-size:15px;
+  margin-bottom:6px;
+  color:#fff;
+}
+.grupo-filtro label {
+  display:flex;
+  gap:8px;
+  font-size:14px;
+  color:var(--secundario);
+
+}
+
+/* botones filtros */
+.btn-principal {
+  background: var(--primario);
+  color:#fff;
+  padding:10px 18px;
+  border-radius:4px;
+  border:0;
+  font-weight:600;
+  cursor:pointer;
+  margin-top:10px;
+  transition: all 0.3s ease;
+}
+.btn-principal:hover {
+  background:#ff5555;
+  transform: scale(1.1);
+}
+
+/* rejilla juegos vertical con placeholders */
+.rejilla-juegos {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+
+
+}
+
+.rejilla-juegos .placeholder {
+  border:1px solid var(--terciario);
+  padding:40px;
+  background: var(--cuaternario);
+  text-align:center;
+  border-radius: var(--radio);
+  color:#eee;
+}
+
+.rejilla-juegos .placeholder h4 {
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.rejilla-juegos .placeholder p {
+  color: var(--secundario);
+
+}
+
+/* pie de pagina con varias columnas */
+.pie-pagina {
+  border-top: 1px solid var(--terciario);
+  margin-top: 40px;
+  padding: 28px 0;
+  background: var(--cuaternario);
+}
+.pie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+
+
+}
+.pie-grid .col h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.pie-grid .col a,
+.pie-grid .col span,
+.pie-grid .col p {
+  color: var(--secundario);
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+}
+.pie-grid .col a:hover,
+.pie-grid .col span:hover {
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* responsive adaptaciones pantallas medianas y pequeñas */
+@media (max-width: 820px) {
+  .layout-explorar { grid-template-columns:1fr; }
+  .header-explorar { flex-direction:column; align-items:flex-start; gap:10px; }
+
+}
+
+@media (max-width: 640px) {
+  .pie-grid { grid-template-columns: repeat(2,1fr); }
+}
