@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KFCZONE - Explorar</title>
-    <link rel="stylesheet" href="/ProyectoFinalPWI/Archivos CSS/explorar.css">
+    <link rel="stylesheet" href="/Archivos CSS/explorar.css">
 </head>
 <body>
 
 <header class="encabezado">
   <div class="contenedor encabezado-interno">
-    <a href="tienda.html" class="logo">KFCZONE</a>
+    <a href="tienda.html" class="logo">
+      <img src="/Archivos IMG/logo.png" alt="KFCZONE Logo" class="logo-KFCZONE">
+    </a>
 
     <nav class="navegacion-principal">
-      <a href="tienda.html" class="enlace-nav">Tienda</a>
-      <a href="explorar.html" class="enlace-nav activo">Explorar</a>
-      <a href="ofertas.html" class="enlace-nav">Ofertas</a>
+      <a href="tienda.html" class="enlace-nav">TIENDA</a>
+      <a href="explorar.html" class="enlace-nav activo">EXPLORAR</a>
+      <a href="ofertas.html" class="enlace-nav">OFERTAS</a>
     </nav>
 
     <div class="zona-acciones">
@@ -31,50 +33,58 @@
 </header>
 
 <main class="contenedor">
-  <h1 class="titulo-pagina">Explorar juegos</h1>
-  <p class="subtitulo">Filtra por genero, plataforma y ordenar resultados</p>
 
-  <section class="filtros">
-    <form action="#" method="get" class="form-filtros" aria-label="Formulario de filtros">
+  <div class="header-explorar">
+    <div>
+      <h1 class="titulo-pagina">Explorar juegos</h1>
+      <p class="subtitulo">Filtra por genero, plataforma y ordenar resultados</p>
+    </div>
 
-      <label class="label-filtro">Genero
-        <select name="genero">
-          <option value="">Todos</option>
-          <option value="action">Accion</option>
-          <option value="rpg">RPG</option>
-          <option value="shooter">Shooter</option>
-          <option value="adventure">Aventura</option>
-        </select>
-      </label>
-
-      <label class="label-filtro">Plataforma
-        <select name="plataforma">
-          <option value="">Todas</option>
-          <option value="pc">PC</option>
-          <option value="switch">Nintendo Switch</option>
-          <option value="playstation">PlayStation</option>
-          <option value="xbox">Xbox</option>
-        </select>
-      </label>
-
-      <label class="label-filtro">Ordenar por
+    <label class="label-filtro ordenar-btn">Ordenar por
         <select name="orden">
           <option value="">Relevancia</option>
           <option value="ventas">Mas vendidos</option>
           <option value="puntuacion">Mejor puntuacion</option>
         </select>
-      </label>
+    </label>
+  </div>
 
-      <button type="submit" class="btn-principal">Aplicar filtros</button>
-    </form>
-  </section>
 
-  <section class="rejilla-juegos" id="contenedor-juegos">
-    <div class="placeholder">
-      <h4>No se encontraron juegos</h4>
-      <p>No se pudo cargar la lista de juegos</p>
-    </div>
-  </section>
+  <div class="layout-explorar">
+
+    <section class="filtros">
+      <form action="#" method="get" class="form-filtros" aria-label="Formulario de filtros">
+
+        <fieldset class="grupo-filtro">
+          <legend>Genero</legend>
+          <label><input type="checkbox" name="genero" value="accion"> Accion</label>
+          <label><input type="checkbox" name="genero" value="aventura"> Aventura</label>
+          <label><input type="checkbox" name="genero" value="rpg"> RPG</label>
+          <label><input type="checkbox" name="genero" value="shooter"> Shooter</label>
+          <label><input type="checkbox" name="genero" value="simulacion"> Estrategia</label>
+        </fieldset>
+
+        <fieldset class="grupo-filtro">
+          <legend>Plataforma</legend>
+          <label><input type="checkbox" name="plataforma" value="switch"> Nintendo Switch</label>
+          <label><input type="checkbox" name="plataforma" value="pc"> PC</label>
+          <label><input type="checkbox" name="plataforma" value="ps4"> PS4</label>
+          <label><input type="checkbox" name="plataforma" value="ps5"> PS5</label>
+          <label><input type="checkbox" name="plataforma" value="xbox-one"> Xbox</label>
+        </fieldset>
+
+        <button type="submit" class="btn-principal">Aplicar filtros</button>
+      </form>
+    </section>
+
+    <section class="rejilla-juegos" id="contenedor-juegos">
+      <div class="placeholder">
+        <h4>No se encontraron juegos</h4>
+        <p>No se pudo cargar la lista de juegos</p>
+      </div>
+    </section>
+
+  </div>
 
 </main>
 
@@ -107,7 +117,7 @@
   </div>
 </footer>
 
-<script src="/ProyectoFinalPWI/Archivos JS/explorar.js"></script>
+<script src="/Archivos JS/explorar.js"></script>
 
 </body>
 </html>
