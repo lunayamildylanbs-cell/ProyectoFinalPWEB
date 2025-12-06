@@ -1,0 +1,220 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+/* BODY */
+body {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  color: #eee;
+  background: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+}
+
+/* VARIABLES */
+:root {
+  --tam-max: 1200px;
+  --tam: 20px;
+  --primario: #ff3b3b;
+  --secundario: #ccc;
+  --terciario: #444;
+  --cuaternario: #111;
+  --radio: 6px;
+}
+
+/* CONTENEDOR */
+.contenedor {
+  width: calc(100% - 40px);
+  max-width: var(--tam-max);
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* HEADER */
+.encabezado {
+  border-bottom: 1px solid var(--terciario);
+  background: var(--cuaternario);
+}
+
+.encabezado .encabezado-interno {
+  max-width: var(--tam-max);
+  margin: 0 auto;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tam);
+}
+
+.logo-KFCZONE {
+  height: 28px;
+  display: block;
+}
+
+/* NAV */
+.navegacion-principal {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.enlace-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border: 1px solid var(--terciario);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--secundario);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.enlace-nav.activo {
+  background: var(--primario);
+  color: #fff;
+  border-color: var(--primario);
+}
+
+.enlace-nav:hover {
+  color: #fff;
+  background: #ff5555;
+  transform: scale(1.1);
+}
+
+/* ACCIONES */
+.zona-acciones {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.buscar {
+  border: 0;
+  outline: 0;
+  padding: 6px 8px;
+  width: 200px;
+  font-size: 14px;
+  color: #eee;
+  background: var(--cuaternario);
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--terciario);
+  background: transparent;
+  padding: 6px 8px;
+  border-radius: var(--radio);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--secundario);
+  transition: 0.3s ease;
+}
+
+.btn-icon:hover {
+  color: #fff;
+  background: var(--primario);
+  transform: scale(1.15);
+}
+
+/* FOOTER */
+.pie-pagina {
+  border-top: 1px solid var(--terciario);
+  margin-top: 40px;
+  padding: 28px 0;
+  background: var(--cuaternario);
+}
+
+.pie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.pie-grid .col h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.pie-grid .col a,
+.pie-grid .col span,
+.pie-grid .col p {
+  color: var(--secundario);
+  font-size: 14px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.pie-grid .col a:hover,
+.pie-grid .col span:hover {
+  color: #fff;
+  transform: scale(1.05);
+}
+
+@media (max-width: 640px) {
+  .pie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+
+
+/* HAMBURGUESA */
+.hamburguesa {
+  display:none;
+  font-size:24px;
+  background:transparent;
+  border:0;
+  color:#fff;
+  cursor:pointer;
+}
+
+.hamburguesa span {
+  display:block;
+  width:24px;
+  height:3px;
+  background:#fff;
+  margin:4px 0;
+}
+
+/* RESPONSIVO */
+@media (max-width:768px) {
+
+  .hamburguesa {
+    display:block;
+  }
+
+  .navegacion-principal {
+    display:none;
+    flex-direction:column;
+    background:#111;
+    padding:10px;
+    border-radius:6px;
+    position:absolute;
+    top:70px;
+    right:10px;
+    z-index:1000;
+  }
+
+  .navegacion-principal a {
+    padding:10px;
+  }
+}
