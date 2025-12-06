@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KFCZONE - Explorar</title>
+    <link rel="stylesheet" href="/Archivos CSS/global.css">
     <link rel="stylesheet" href="/Archivos CSS/explorar.css">
 </head>
 <body>
@@ -14,6 +15,12 @@
       <img src="/Archivos IMG/logo.png" alt="KFCZONE Logo" class="logo-KFCZONE">
     </a>
 
+    <button class="hamburguesa" id="hamburguesa">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
     <nav class="navegacion-principal">
       <a href="tienda.html" class="enlace-nav">TIENDA</a>
       <a href="explorar.html" class="enlace-nav activo">EXPLORAR</a>
@@ -23,11 +30,11 @@
     <div class="zona-acciones">
       
         <input name="q" type="search" class="buscar" placeholder="Buscar juegos">
-        <button type="submit" class="btn-icon">🔎</button>
-      </form>
+        <button type="button" class="btn-icon buscar-btn">🔎</button>
 
-      <a href="carrito.html" class="btn-icon">🛒</a>
-      <button type="submit" class="btn-icon">👤</a>
+        <a href="carrito.html" class="btn-icon">🛒</a>
+        <button type="button" class="btn-icon">👤</button>
+
     </div>
   </div>
 </header>
@@ -39,14 +46,6 @@
       <h1 class="titulo-pagina">Explorar juegos</h1>
       <p class="subtitulo">Filtra por genero, plataforma y ordenar resultados</p>
     </div>
-
-    <label class="label-filtro ordenar-btn">Ordenar por
-        <select name="orden">
-          <option value="">Relevancia</option>
-          <option value="ventas">Mas vendidos</option>
-          <option value="puntuacion">Mejor puntuacion</option>
-        </select>
-    </label>
   </div>
 
 
@@ -92,7 +91,8 @@
   <div class="contenedor pie-grid">
     <div class="col">
       <h4>Sobre KFCZONE</h4>
-      <p>Tu tienda de videojuegos de confianza YAAA</p>
+      <p>Tu tienda de videojuegos de confianza</p>
+      <p>© 2025 KFCZONE - Derechos reservados</p>
     </div>
 
     <div class="col">

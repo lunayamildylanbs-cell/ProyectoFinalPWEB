@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KFCZONE - Juego</title>
+    <link rel="stylesheet" href="/Archivos CSS/global.css">
     <link rel="stylesheet" href="/Archivos CSS/juego.css">
 </head>
 <body>
@@ -14,6 +15,12 @@
       <img src="/Archivos IMG/logo.png" alt="KFCZONE Logo" class="logo-KFCZONE">
     </a>
 
+    <button class="hamburguesa" id="hamburguesa">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
     <nav class="navegacion-principal">
       <a href="tienda.html" class="enlace-nav">TIENDA</a>
       <a href="explorar.html" class="enlace-nav">EXPLORAR</a>
@@ -21,13 +28,10 @@
     </nav>
 
     <div class="zona-acciones">
-      
-        <input name="q" type="search" class="buscar" placeholder="Buscar juegos">
-        <button type="submit" class="btn-icon">🔎</button>
-      </form>
 
-      <a href="carrito.html" class="btn-icon">🛒</a>
-      <button type="submit" class="btn-icon">👤</a>
+        <a href="carrito.html" class="btn-icon">🛒</a>
+        <button type="button" class="btn-icon">👤</button>
+
     </div>
   </div>
 </header>
@@ -52,8 +56,9 @@
     <aside class="panel-compra">
       <h3>Precio</h3>
 
-      <a href="pago.html" class="btn-principal">Comprar Ahora</a>
-      <a href="carrito.html" class="btn-secundario">🛒 Agregar al Carrito</a>
+      <button id="comprar-ahora" class="btn-principal" data-id="">Comprar Ahora</button>
+      <button id="agregar-carrito" class="btn-secundario" data-id="">🛒 Agregar al Carrito</button>
+
 
       <div id="btn-trailer" class="btn-secundario boton-texto">▶ Ver Trailer</div>
 
@@ -132,7 +137,8 @@
   <div class="contenedor pie-grid">
     <div class="col">
       <h4>Sobre KFCZONE</h4>
-      <p>Tu tienda de videojuegos de confianza YAAA</p>
+      <p>Tu tienda de videojuegos de confianza</p>
+      <p>© 2025 KFCZONE - Derechos reservados</p>
     </div>
 
     <div class="col">
