@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KFCZONE - Tienda</title>
+    <link rel="stylesheet" href="/Archivos CSS/global.css">
     <link rel="stylesheet" href="/Archivos CSS/tienda.css">
 </head>
 <body>
@@ -14,6 +15,12 @@
       <img src="/Archivos IMG/logo.png" alt="KFCZONE Logo" class="logo-KFCZONE">
     </a>
 
+    <button class="hamburguesa" id="hamburguesa">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
     <nav class="navegacion-principal">
       <a href="tienda.html" class="enlace-nav activo">TIENDA</a>
       <a href="explorar.html" class="enlace-nav">EXPLORAR</a>
@@ -21,13 +28,9 @@
     </nav>
 
     <div class="zona-acciones">
-      
-        <input name="q" type="search" class="buscar" placeholder="Buscar juegos">
-        <button type="submit" class="btn-icon">🔎</button>
-      </form>
 
-      <a href="carrito.html" class="btn-icon">🛒</a>
-      <button type="submit" class="btn-icon">👤</a>
+        <a href="carrito.html" class="btn-icon">🛒</a>
+        <button type="button" class="btn-icon">👤</button>
     </div>
   </div>
 </header>
@@ -78,12 +81,6 @@
           <li> No se pudo cargar el top de ventas</li>
       </ol>
 
-      <div class="botones-rapidos">
-        <a href="ofertas.html" class="btn-ghost"> Ofertas Especiales</a>
-        <a href="explorar.html" class="btn-ghost"> Catalogo Completo</a>
-        <a href="explorar.html?orden=mejor-valorados" class="btn-ghost"> Mejor Valorados</a>
-        <a href="explorar.html?filtro=proximamente" class="btn-ghost"> Proximamente</a>
-      </div>
     </aside>
 
   </section>
@@ -105,7 +102,8 @@
   <div class="contenedor pie-grid">
     <div class="col">
       <h4>Sobre KFCZONE</h4>
-      <p>Tu tienda de videojuegos de confianza YAAA</p>
+      <p>Tu tienda de videojuegos de confianza</p>
+      <p>© 2025 KFCZONE - Derechos reservados</p>
     </div>
 
     <div class="col">
@@ -131,6 +129,6 @@
 </footer>
 
 <script src="/Archivos JS/tienda.js"></script>
-
+<script src="/Archivos JS/global.js"></script>
 </body>
 </html>
