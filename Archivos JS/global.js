@@ -9,18 +9,17 @@ hamburguesa.addEventListener("click", () => {
 
 
 // Abrir manual 
-<a href="#" onclick="openPDF('MANUAL_TECNICO_PW_1.pdf')">KFCZONE - MANUAL TECNICO PW 1.pdf</a><br>
-<a href="#" onclick="openPDF('MANUAL_USUARIO_PW_1.pdf')">KFCZONE - MANUAL USUARIO PW 1.pdf</a>
+document.addEventListener("DOMContentLoaded", function () {
+    const pdfLinks = document.querySelectorAll(".pdf-link");
+    const pdfContainer = document.getElementById("pdf-container");
+    const pdfFrame = document.getElementById("pdf-frame");
 
-<!-- Contenedor para el iframe -->
-<div id="pdf-container" style="display: none;">
-    <iframe id="pdf-frame" src="" width="100%" height="600px"></iframe>
-</div>
-
-<script>
-    function openPDF(pdfFile) {
-        var iframe = document.getElementById("pdf-frame");
-        iframe.src = pdfFile;
-        document.getElementById("pdf-container").style.display = "block"; // Muestra el iframe
-    }
-</script>
+    pdfLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault(); 
+            const pdfPath = this.getAttribute("data-pdf");
+            pdfFrame.src = pdfPath;
+            pdfContainer.style.display = "block";
+        });
+    });
+});
