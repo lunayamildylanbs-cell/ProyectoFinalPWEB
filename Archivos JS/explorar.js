@@ -1,6 +1,6 @@
 // config rawg
 const RAWG_KEY = "66d71aea9962478a92839e951481b374";
-const RAWG_BASE = "https://corsproxy.io/?https://api.rawg.io/api";
+const RAWG_BASE = "https://api.rawg.io/api";
 
 // fetch con fallback json local (misma logica que tienda)
 const pedirJson = url => fetch(url).then(r => {
