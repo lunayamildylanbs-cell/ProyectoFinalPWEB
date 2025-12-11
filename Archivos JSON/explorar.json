@@ -1,0 +1,166 @@
+{
+  "results": [
+    {
+      "id": 1,
+      "name": "Elden Ring",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co4jni.jpg",
+      "rating": 4.8,
+      "genres": [
+        { "name": "RPG" },
+        { "name": "Acción" }
+      ],
+      "priceObj": { "base": 59.99, "final": 35.99, "discount": 40 }
+    },
+    {
+      "id": 2,
+      "name": "Cyberpunk 2077",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co6e4e.jpg",
+      "rating": 4.3,
+      "genres": [
+        { "name": "Acción" },
+        { "name": "Aventura" }
+      ],
+      "priceObj": { "base": 49.99, "final": 29.99, "discount": 40 }
+    },
+    {
+      "id": 3,
+      "name": "The Witcher 3",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co1wyy.jpg",
+      "rating": 4.9,
+      "genres": [
+        { "name": "RPG" },
+        { "name": "Aventura" }
+      ],
+      "priceObj": { "base": 39.99, "final": 23.99, "discount": 40 }
+    },
+    {
+      "id": 4,
+      "name": "Red Dead Redemption 2",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co1wyy.jpg",
+      "rating": 4.9,
+      "genres": [
+        { "name": "Acción" },
+        { "name": "Aventura" }
+      ],
+      "priceObj": { "base": 59.99, "final": 47.99, "discount": 20 }
+    },
+    {
+      "id": 5,
+      "name": "GTA V",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co1x23.jpg",
+      "rating": 4.7,
+      "genres": [
+        { "name": "Acción" },
+        { "name": "Mundo Abierto" }
+      ],
+      "priceObj": { "base": 29.99, "final": 17.99, "discount": 40 }
+    },
+    {
+      "id": 6,
+      "name": "Baldur's Gate 3",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co6g67.jpg",
+      "rating": 4.9,
+      "genres": [
+        { "name": "RPG" }
+      ],
+      "priceObj": { "base": 59.99, "final": 47.99, "discount": 20 }
+    },
+    {
+      "id": 7,
+      "name": "God of War (2018)",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co1tmu.jpg",
+      "rating": 4.9,
+      "genres": [
+        { "name": "Acción" },
+        { "name": "Aventura" }
+      ],
+      "priceObj": { "base": 49.99, "final": 29.99, "discount": 40 }
+    },
+    {
+      "id": 8,
+      "name": "Hogwarts Legacy",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co6ltl.jpg",
+      "rating": 4.4,
+      "genres": [
+        { "name": "Aventura" },
+        { "name": "RPG" }
+      ],
+      "priceObj": { "base": 59.99, "final": 38.99, "discount": 35 }
+    },
+    {
+      "id": 9,
+      "name": "Call of Duty: Modern Warfare II",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co5w4z.jpg",
+      "rating": 4.1,
+      "genres": [
+        { "name": "Shooter" }
+      ],
+      "priceObj": { "base": 59.99, "final": 41.99, "discount": 30 }
+    },
+    {
+      "id": 10,
+      "name": "Resident Evil 4 Remake",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co6j0f.jpg",
+      "rating": 4.7,
+      "genres": [
+        { "name": "Terror" },
+        { "name": "Acción" }
+      ],
+      "priceObj": { "base": 49.99, "final": 34.99, "discount": 30 }
+    },
+    {
+      "id": 11,
+      "name": "Sekiro: Shadows Die Twice",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co1x2n.jpg",
+      "rating": 4.8,
+      "genres": [
+        { "name": "Acción" },
+        { "name": "Aventura" }
+      ],
+      "priceObj": { "base": 39.99, "final": 23.99, "discount": 40 }
+    },
+    {
+      "id": 12,
+      "name": "Assassin’s Creed Valhalla",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co5p5k.jpg",
+      "rating": 4.4,
+      "genres": [
+        { "name": "RPG" },
+        { "name": "Aventura" }
+      ],
+      "priceObj": { "base": 59.99, "final": 35.99, "discount": 40 }
+    },
+    {
+      "id": 13,
+      "name": "Spider-Man Remastered",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co53b5.jpg",
+      "rating": 4.8,
+      "genres": [
+        { "name": "Acción" }
+      ],
+      "priceObj": { "base": 49.99, "final": 34.99, "discount": 30 }
+    },
+    {
+      "id": 14,
+      "name": "The Last of Us Part I",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co2l97.jpg",
+      "rating": 4.9,
+      "genres": [
+        { "name": "Acción" },
+        { "name": "Aventura" }
+      ],
+      "priceObj": { "base": 59.99, "final": 41.99, "discount": 30 }
+    },
+    {
+      "id": 15,
+      "name": "Starfield",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_original/co6cvo.jpg",
+      "rating": 4.3,
+      "genres": [
+        { "name": "RPG" },
+        { "name": "Ciencia Ficción" }
+      ],
+      "priceObj": { "base": 69.99, "final": 48.99, "discount": 30 }
+    }
+  ]
+}

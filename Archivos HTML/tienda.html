@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFCZONE - Tienda</title>
+    <link rel="stylesheet" href="../Archivos CSS/global.css">
+    <link rel="stylesheet" href="../Archivos CSS/tienda.css">
+</head>
+<body>
+
+<header class="encabezado">
+  <div class="contenedor encabezado-interno">
+    <a href="tienda.html" class="logo">
+      <img src="../Archivos IMG/logo.png" alt="KFCZONE Logo" class="logo-KFCZONE">
+    </a>
+
+    <!-- navegacion principal -->
+    <nav class="navegacion-principal">
+      <a href="tienda.html" class="enlace-nav activo">TIENDA</a>
+      <a href="explorar.html" class="enlace-nav">EXPLORAR</a>
+      <a href="ofertas.html" class="enlace-nav">OFERTAS</a>
+    </nav>
+
+    <div class="zona-acciones">
+
+        <a href="carrito.html" class="btn-icon">🛒</a>
+        <button type="button" class="btn-icon">👤</button >
+    </div>
+
+    <!-- boton hamburguesa -->
+    <button class="hamburguesa" id="hamburguesa">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main class="contenedor">
+  <h1 class="titulo-principal">TIENDA DE JUEGOS KFCZONE</h1>
+
+  <!-- seccion destacado -->
+  <section id="seccion-destacado" class="destacado">
+      <div class="placeholder">
+          <h3> Juego destacado no encontrado</h3>
+          <p> No se pudo cargar la informacion del juego</p>
+      </div>
+  </section>
+
+  <!-- seccion ofertas especiales -->
+  <section class="ofertas-especiales">
+    <div class="cabecera-seccion">
+      <h2>Ofertas Especiales</h2>
+      <a href="ofertas.html" class="ver-todas">Ver todas →</a>
+    </div>
+
+    <div id="lista-ofertas" class="rejilla-ofertas">
+        <div class="placeholder">
+            <h4> No hay ofertas disponibles</h4>
+            <p> No se pudo cargar la lista de juegos</p>
+        </div>
+    </div>
+  </section>
+
+  <section class="nuevos-top">
+
+    <!-- nuevos lanzamientos -->
+    <div class="nuevos">
+      <div class="cabecera-seccion">
+        <h3> Nuevos Lanzamientos</h3>
+        <a href="explorar.html" class="ver-mas">Ver mas →</a>
+      </div>
+
+      <div id="lista-nuevos" class="lista-nuevos">
+          <div class="placeholder">
+              <h4> No se encontraron nuevos lanzamientos</h4>
+              <p> Error al cargar el nuevo lanzamiento</p>
+          </div>
+      </div>
+    </div>
+
+    <!-- lista top ventas -->
+    <aside class="top-ventas">
+      <h3>Top Ventas</h3>
+
+      <ol id="lista-top" class="lista-top">
+          <li> No se pudo cargar el top de ventas</li>
+      </ol>
+
+    </aside>
+
+  </section>
+
+  <!-- categorias de juegos -->
+  <section class="categorias">
+    <h3>Explorar por categoria</h3>
+    <div class="rejilla-categorias">
+      <a href="explorar.html?categoria=Action" class="categoria">Accion<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=Adventure" class="categoria">Aventura<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=RPG" class="categoria">RPG<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=Shooter" class="categoria">Shooter<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=Strategy" class="categoria">Estrategia<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=Strategy" class="categoria">Casual<br><small>Ver juegos</small></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie-pagina">
+  <div class="contenedor pie-grid">
+    
+    <!-- columna informacion -->
+    <div class="col">
+      <h4>Sobre KFCZONE</h4>
+      <p>Tu tienda de videojuegos de confianza</p>
+      <p>© 2025 KFCZONE - Derechos reservados</p>
+    </div>
+
+    <!-- columna enlaces -->
+    <div class="col">
+      <h4>Tienda</h4>
+      <a href="tienda.html">Catalogo</a><br>
+      <a href="explorar.html">Explorar</a><br>
+      <a href="ofertas.html">Ofertas</a><br>
+      <a href="carrito.html">Carrito</a>
+    </div>
+
+    <!-- columna soporte -->
+    <div class="col">
+      <h4>Soporte</h4>
+      <span>Centro de Ayuda</span><br>
+      <span>Contacto</span><br>
+    </div>
+
+    <!-- columna legal -->
+    <div class="col">
+      <h4>Legal</h4>
+      <span>Terminos</span><br>
+      <span>Politica de Privacidad</span><br>
+    </div>
+  </div>
+</footer>
+
+<!-- scripts -->
+<script src="../Archivos JS/tienda.js"></script>
+<script src="../Archivos JS/global.js"></script>
+
+</body>
+</html>

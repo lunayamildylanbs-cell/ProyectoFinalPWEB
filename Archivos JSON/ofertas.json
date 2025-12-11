@@ -1,0 +1,100 @@
+{
+  "destacado": [
+    {
+      "id": 1,
+      "name": "Elden Ring",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.png",
+      "genres": [{ "name": "RPG" }]
+    }
+  ],
+
+  "flash": [
+    {
+      "id": 2,
+      "name": "Cyberpunk 2077",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6nqt.png",
+      "genres": [{ "name": "RPG" }]
+    },
+    {
+      "id": 3,
+      "name": "GTA V",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x1o.png",
+      "genres": [{ "name": "Acción" }]
+    },
+    {
+      "id": 4,
+      "name": "Red Dead Redemption 2",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1r77.png",
+      "genres": [{ "name": "Aventura" }]
+    },
+    {
+      "id": 5,
+      "name": "The Witcher 3: Wild Hunt",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1r93.png",
+      "genres": [{ "name": "RPG" }]
+    },
+    {
+      "id": 6,
+      "name": "Baldur's Gate 3",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6q8c.png",
+      "genres": [{ "name": "RPG" }]
+    }
+  ],
+
+  "semana": [
+    {
+      "id": 7,
+      "name": "God of War (2018)",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.png",
+      "genres": [{ "name": "Acción" }]
+    },
+    {
+      "id": 8,
+      "name": "Hogwarts Legacy",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5vmn.png",
+      "genres": [{ "name": "Aventura" }]
+    },
+    {
+      "id": 9,
+      "name": "Call of Duty: Modern Warfare II",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5vm9.png",
+      "genres": [{ "name": "Shooter" }]
+    },
+    {
+      "id": 10,
+      "name": "Resident Evil 4 Remake",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6k1c.png",
+      "genres": [{ "name": "Survival Horror" }]
+    },
+    {
+      "id": 11,
+      "name": "Sekiro: Shadows Die Twice",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1vfy.png",
+      "genres": [{ "name": "Acción" }]
+    },
+    {
+      "id": 12,
+      "name": "Assassin’s Creed Valhalla",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xur.png",
+      "genres": [{ "name": "RPG" }]
+    },
+    {
+      "id": 13,
+      "name": "Spider-Man Remastered",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co49td.png",
+      "genres": [{ "name": "Acción" }]
+    },
+    {
+      "id": 14,
+      "name": "The Last of Us Part I",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5vmn.png",
+      "genres": [{ "name": "Aventura" }]
+    },
+    {
+      "id": 15,
+      "name": "Starfield",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5h5j.png",
+      "genres": [{ "name": "RPG" }]
+    }
+  ]
+}

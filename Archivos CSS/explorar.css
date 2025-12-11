@@ -1,0 +1,196 @@
+/* títulos y subtítulos */
+.header-explorar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+.titulo-pagina {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.subtitulo {
+  color: var(--secundario);
+}
+
+/* layout principal */
+.layout-explorar {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 26px;
+  margin-top: 10px;
+}
+
+/* filtros */
+.filtros input[type="checkbox"] {
+  accent-color: var(--primario);
+  cursor: pointer;
+}
+
+.filtros fieldset {
+  background: var(--cuaternario);
+  border: 1px solid var(--terciario);
+  border-radius: var(--radio);
+  padding: 12px;
+}
+
+.form-filtros {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.grupo-filtro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.grupo-filtro legend {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.grupo-filtro label {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--secundario);
+}
+
+/* rejilla de juegos */
+.rejilla-juegos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rejilla-juegos .placeholder {
+  border: 1px solid var(--terciario);
+  padding: 40px;
+  background: var(--cuaternario);
+  text-align: center;
+  border-radius: var(--radio);
+  color: #eee;
+}
+
+.rejilla-juegos .placeholder h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.rejilla-juegos .placeholder p {
+  color: var(--secundario);
+}
+
+/* tarjetas de juego - explorar */
+.rejilla-juegos {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* tarjeta */
+.juego-card {
+  background: var(--cuaternario);
+  border: 1px solid var(--terciario);
+  border-radius: var(--radio);
+  overflow: hidden;
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+
+/* enlace interno */
+.juego-enlace {
+  display: flex;
+  gap: 18px;
+  padding: 16px;
+  color: #eee;
+  text-decoration: none;
+}
+
+/* imagen del juego */
+.juego-img {
+  width: 180px;
+  height: 110px;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radio);
+  flex-shrink: 0;
+  background-color: #222;
+}
+
+/* contenedor info */
+.juego-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* nombre */
+.juego-nombre {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #fff;
+  transition: color .25s ease;
+}
+
+/* detalles */
+.juego-detalles {
+  color: var(--secundario);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* contenedor precio */
+.juego-precio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+/* precio normal */
+.precio-final {
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* precio tachado */
+.precio-tachado {
+  color: #888;
+  font-size: 14px;
+  text-decoration: line-through;
+}
+
+/* badge descuento */
+.precio-desc {
+  background: var(--primario);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* 1024px */
+@media (max-width:1024px){
+  .layout-explorar{grid-template-columns:1fr}
+  .header-explorar{flex-direction:column;align-items:flex-start;gap:10px}
+}
+
+/* 680px */
+@media (max-width:680px){
+  .juego-enlace{flex-direction:column;align-items:center;text-align:center}
+  .juego-img{width:100%;height:160px}
+  .juego-precio{justify-content:center}
+
+}

@@ -1,0 +1,336 @@
+/* titulos de seccion */
+.titulo-principal {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 12px 0 20px;
+  color: #fff;
+}
+
+/* bloque destacado */
+.destacado {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  min-height: 260px;
+  margin-bottom: 20px;
+  border: 1px solid var(--terciario);
+  background: linear-gradient(145deg, var(--cuaternario), #222);
+  position: relative;
+}
+
+.destacado h3 {
+  font-size: 28px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.destacado p {
+  margin-bottom: 14px;
+  color: var(--secundario);
+}
+
+/* seccion de ofertas */
+.ofertas-especiales { margin: 20px 0; }
+
+.cabecera-seccion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cabecera-seccion .ver-todas,
+.cabecera-seccion .ver-mas {
+  color: var(--secundario);
+  font-weight: 600;
+  text-decoration: none;
+  transition: .3s;
+}
+
+/* rejilla de ofertas */
+.rejilla-ofertas {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 10px;
+}
+
+.rejilla-ofertas .placeholder {
+  padding: 12px 16px;
+  border: 1px solid var(--terciario);
+  background: var(--cuaternario);
+  color: #eee;
+}
+
+/* bloque de novedades */
+.nuevos-top {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.lista-nuevos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lista-nuevos .placeholder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border: 1px solid var(--terciario);
+  background: var(--cuaternario);
+  color: #eee;
+}
+
+/* lateral de top ventas */
+.top-ventas {
+  padding: 18px;
+  border: 1px solid var(--terciario);
+  background: var(--cuaternario);
+}
+
+.lista-top {
+  list-style: none;
+  margin-top: 12px;
+  padding: 0;
+}
+
+.lista-top li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #333;
+}
+
+/* categorias de productos */
+.categorias h3 { 
+  color: #fff; 
+  padding-top: 20px;
+}
+
+.rejilla-categorias {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.rejilla-categorias .categoria {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border: 1px solid var(--terciario);
+  background: var(--cuaternario);
+  color: var(--primario);
+  text-decoration: none;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.rejilla-categorias .categoria small { color: var(--secundario); }
+
+/* destacado con imagen */
+.destacado-inner {
+  width: 100%;
+  min-height: 300px;
+  padding: 60px;
+  border: 1px solid var(--terciario);
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radio);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  transition: .3s;
+}
+
+.dest-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.7), rgba(0,0,0,.2));
+}
+
+/* texto del destacado */
+.dest-content {
+  position: relative;
+  max-width: 550px;
+  z-index: 5;
+}
+
+.dest-etiqueta {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  background: #000;
+  border-radius: var(--radio);
+  font-weight: 700;
+}
+
+.dest-titulo {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.dest-descripcion {
+  margin-bottom: 14px;
+  color: var(--secundario);
+}
+
+.dest-info {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.dest-badge {
+  padding: 6px 10px;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: var(--radio);
+}
+
+
+
+/* tarjetas de oferta */
+.ofertas-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+
+.oferta-card {
+  border: 1px solid var(--terciario);
+  background: var(--cuaternario);
+  border-radius: var(--radio);
+  transition: .25s;
+  min-width: 360px;
+}
+
+.oferta-enlace {
+  display: flex;
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+}
+
+.oferta-img {
+  width: 180px;
+  height: 100%;
+  min-height: 120px;
+  background-size: cover;
+  background-position: center;
+  border-right: 1px solid #222;
+}
+
+.oferta-info { padding: 12px; }
+
+.oferta-nombre {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.oferta-genero { color: var(--secundario); }
+
+.oferta-precio { margin-top: 10px; }
+
+.precio-tachado {
+  margin-right: 8px;
+  color: #777;
+  text-decoration: line-through;
+}
+
+.precio-final {
+  font-weight: 700;
+  color: #e73e3e;
+}
+
+.precio-desc {
+  margin-left: 10px;
+  color: #f66;
+}
+
+/* items nuevos */
+.nuevo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--terciario);
+  background: var(--cuaternario);
+  border-radius: var(--radio);
+}
+
+.nuevo-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nuevo-img {
+  width: 120px;
+  height: 64px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #333;
+}
+
+.nuevo-nombre {
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nuevo-detalles {
+  margin-top: 4px;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.nuevo-precio { font-weight: 700; }
+
+/* top ventas */
+.top-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #333;
+}
+
+.top-nombre {
+  color: inherit;
+  text-decoration: none;
+}
+
+.top-precio { font-weight: 700; }
+
+
+/* 1024px */
+@media (max-width:1024px){
+  .rejilla-ofertas,.ofertas-grid{grid-template-columns:repeat(2,1fr)}
+  .nuevos-top{grid-template-columns:1fr}
+  .top-ventas{order:2}
+  .destacado{min-height:220px;flex-direction:column;text-align:center}
+  .destacado-inner{min-height:240px;padding:28px}
+  .oferta-card{min-width:auto}
+}
+
+/* 680px */
+@media (max-width:680px){
+  .rejilla-ofertas,.ofertas-grid{grid-template-columns:1fr}
+  .rejilla-categorias{grid-template-columns:repeat(2,1fr)}
+  .destacado-inner{min-height:230px;padding:22px}
+  .nuevo-img{width:90px;height:54px}
+  .oferta-img{width:120px;min-height:90px}
+  .oferta-enlace{flex-direction:row}
+}
+ 

@@ -1,0 +1,132 @@
+{
+  "destacado": [
+    {
+      "id": 1,
+      "name": "Elden Ring",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.png",
+      "rating": 4.9,
+      "genres": [{ "name": "Action RPG" }],
+      "description_raw": "Un mundo abierto oscuro y gigantesco diseñado por FromSoftware y George R.R. Martin."
+    }
+  ],
+
+  "ofertas": [
+    {
+      "id": 2,
+      "name": "Cyberpunk 2077",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6nqt.png",
+      "rating": 4.5,
+      "genres": [{ "name": "RPG" }]
+    },
+    {
+      "id": 3,
+      "name": "GTA V",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x1o.png",
+      "rating": 4.8,
+      "genres": [{ "name": "Action" }]
+    },
+    {
+      "id": 4,
+      "name": "Red Dead Redemption 2",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1r77.png",
+      "rating": 4.9,
+      "genres": [{ "name": "Adventure" }]
+    },
+    {
+      "id": 5,
+      "name": "The Witcher 3: Wild Hunt",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1r93.png",
+      "rating": 4.9,
+      "genres": [{ "name": "RPG" }]
+    },
+    {
+      "id": 6,
+      "name": "Baldur's Gate 3",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6q8c.png",
+      "rating": 4.9,
+      "genres": [{ "name": "RPG" }]
+    },
+    {
+      "id": 7,
+      "name": "God of War (2018)",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.png",
+      "rating": 4.8,
+      "genres": [{ "name": "Action" }]
+    }
+  ],
+
+  "nuevos": [
+    {
+      "id": 8,
+      "name": "Hogwarts Legacy",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5vmn.png",
+      "rating": 4.4,
+      "genres": [{ "name": "Adventure" }],
+      "released": "2023-02-10"
+    },
+    {
+      "id": 9,
+      "name": "Call of Duty: Modern Warfare II",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5vm9.png",
+      "rating": 4.1,
+      "genres": [{ "name": "Shooter" }],
+      "released": "2022-10-28"
+    },
+    {
+      "id": 10,
+      "name": "Resident Evil 4 Remake",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6k1c.png",
+      "rating": 4.7,
+      "genres": [{ "name": "Horror" }],
+      "released": "2023-03-24"
+    },
+    {
+      "id": 11,
+      "name": "Sekiro: Shadows Die Twice",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1vfy.png",
+      "rating": 4.6,
+      "genres": [{ "name": "Action" }],
+      "released": "2019-03-22"
+    },
+    {
+      "id": 12,
+      "name": "Assassin’s Creed Valhalla",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xur.png",
+      "rating": 4.3,
+      "genres": [{ "name": "RPG" }],
+      "released": "2020-11-10"
+    },
+    {
+      "id": 13,
+      "name": "Spider-Man Remastered",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co49td.png",
+      "rating": 4.7,
+      "genres": [{ "name": "Action" }],
+      "released": "2022-08-12"
+    }
+  ],
+
+  "top": [
+    {
+      "id": 14,
+      "name": "The Last of Us Part I",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5vmn.png",
+      "rating": 4.9,
+      "genres": [{ "name": "Adventure" }]
+    },
+    {
+      "id": 15,
+      "name": "Starfield",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5h5j.png",
+      "rating": 4.2,
+      "genres": [{ "name": "RPG" }]
+    },
+    {
+      "id": 16,
+      "name": "Forza Horizon 5",
+      "background_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2o3w.png",
+      "rating": 4.8,
+      "genres": [{ "name": "Racing" }]
+    }
+  ]
+}

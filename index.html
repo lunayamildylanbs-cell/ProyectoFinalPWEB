@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFCZONE - Inicio Sesion</title>
+    <link rel="stylesheet" href="Archivos CSS/global.css">
+    <link rel="stylesheet" href="Archivos CSS/index.css">
+
+</head>
+<body>
+
+<header class="encabezado">
+  <div class="contenedor encabezado-interno">
+    <a href="Archivos HTML/tienda.html" class="logo">
+      <img src="Archivos IMG/logo.png" alt="KFCZONE Logo" class="logo-KFCZONE">
+    </a>
+
+    <!-- navegacion principal -->
+    <nav class="navegacion-principal"> 
+      <a href="Archivos HTML/tienda.html" class="enlace-nav">TIENDA</a>
+      <a href="Archivos HTML/explorar.html" class="enlace-nav">EXPLORAR</a>
+      <a href="Archivos HTML/ofertas.html" class="enlace-nav">OFERTAS</a>
+    </nav>
+
+    <div class="zona-acciones">
+
+        <a href="Archivos HTML/carrito.html" class="btn-icon">🛒</a>
+        <a href="Archivos HTML/login.html" class="btn-icon">👤</a>
+    </div>
+
+    <!-- boton hamburguesa -->
+    <button class="hamburguesa" id="hamburguesa">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main class="contenedor login-contenido">
+  <section class="tarjeta-login">
+    
+    <h1>Bienvenido de nuevo</h1>
+    <p>Inicia sesion para continuar</p>
+
+    <form id="form-login" class="form-login">
+
+      <label for="correo">Correo Electronico</label>
+      <input id="correo" type="email" placeholder="correoelectronico@gmail.com" required>
+
+      <label for="contraseña">Contraseña</label>
+      <input id="contraseña" type="password" placeholder="•••••••••••" required>
+
+      <button type="submit" class="btn-principal">Iniciar Sesion</button>
+    </form>
+
+  </section>
+</main>
+
+<footer class="pie-pagina">
+  <div class="contenedor pie-grid">
+
+    <!-- columna informacion -->
+    <div class="col">
+      <h4>Sobre KFCZONE</h4>
+      <p>Tu tienda de videojuegos de confianza</p>
+      <p>© 2025 KFCZONE - Derechos reservados</p>
+    </div>
+
+    <!-- columna enlaces -->
+    <div class="col">
+      <h4>Tienda</h4>
+      <a href="Archivos HTML/tienda.html">Catalogo</a><br>
+      <a href="Archivos HTML/explorar.html">Explorar</a><br>
+      <a href="Archivos HTML/ofertas.html">Ofertas</a><br>
+      <a href="Archivos HTML/carrito.html">Carrito</a>
+      <a href="Archivos HTML/Archivos HTML/"></a>
+    </div>
+
+    <!-- columna soporte -->
+    <div class="col">
+      <h4>Soporte</h4>
+      <span>Centro de Ayuda</span><br>
+      <span>Contacto</span><br>
+    </div>
+
+    <!-- columna legal -->
+    <div class="col">
+      <h4>Legal</h4>
+      <span>Terminos</span><br>
+      <span>Politica de Privacidad</span><br>
+    </div>
+
+  </div>
+</footer>
+
+<script src="Archivos JS/index.js"></script>
+<script src="Archivos JS/global.js"></script>
+
+</body>
+</html>
