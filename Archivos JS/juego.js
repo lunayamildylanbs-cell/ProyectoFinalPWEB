@@ -1,187 +1,229 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KFCZONE - Juego</title>
-    <link rel="stylesheet" href="../Archivos CSS/global.css">
-    <link rel="stylesheet" href="../Archivos CSS/juego.css">
-</head>
-<body>
+// config rawg y youtube
+const RAWG_KEY = "66d71aea9962478a92839e951481b374";
+const RAWG_BASE = "https://corsproxy.io/?https://api.rawg.io/api";
+const YT_KEY = "AIzaSyBxKNB4izVzKqU4rznBLvZYChbUYOgfVL4";
 
-<header class="encabezado">
-  <div class="contenedor encabezado-interno">
-    <a href="tienda.html" class="logo">
-      <img src="../Archivos IMG/logo.png" alt="KFCZONE Logo" class="logo-KFCZONE">
-    </a>
+// fetch rawg con fallback
+async function rawgFetch(url, idFallback = null) {
+    try {
+        const r = await fetch(url);
+        if (!r.ok) throw new Error("rawg fallo");
+        return await r.json();
+    } catch (err) {
+        if (!idFallback) return null;
 
-    <!-- navegacion principal -->
-    <nav class="navegacion-principal">
-      <a href="tienda.html" class="enlace-nav">TIENDA</a>
-      <a href="explorar.html" class="enlace-nav">EXPLORAR</a>
-      <a href="ofertas.html" class="enlace-nav">OFERTAS</a>
-    </nav>
+        // fallback local juego.json
+        const local = await fetch("/Archivos JSON/juego.json").then(r => r.json());
+        return local[idFallback] || null;
+    }
+}
 
-    <div class="zona-acciones">
-      
-        <a href="carrito.html" class="btn-icon">🛒</a>
-        <button type="button" class="btn-icon">👤</button>
-    </div>
+// obtener id de la url
+function getID() {
+    const p = new URLSearchParams(location.search);
+    return p.get("id");
+}
 
-    <!-- boton hamburguesa -->
-    <button class="hamburguesa" id="hamburguesa">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</header>
+// precios aleatorios
+function fakePrice() {
+    const base = Math.round((14 + Math.random() * 50) * 100) / 100;
+    const discount = Math.floor(Math.random() * 60);
+    const final = Math.round((base * (1 - discount / 100)) * 100) / 100;
+    return { initial: base, final, discount };
+}
 
-<main class="contenedor pagina-juego">
+// trailer oficial youtube
+async function getTrailer(query) {
+    const q = encodeURIComponent(`${query} trailer oficial videojuego`);
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=1&q=${q}&key=${YT_KEY}`;
 
-  <h2 id="titulo-juego" class="titulo-juego">Titulo del juego no disponible</h2>
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        const id = data.items?.[0]?.id?.videoId;
+        return id ? `https://www.youtube.com/watch?v=${id}` : null;
+    } catch {
+        return null;
+    }
+}
 
-  <!-- informacion superior del juego -->
-  <div class="informacion-superior">
-    <span id="valoracion-juego" class="etiqueta">--</span>
-    <span id="ano-juego" class="etiqueta">--</span>
-  </div>
+// requisitos segun rating
+function generateRequirements(game) {
+    const rating = game.metacritic || (game.rating * 20) || 60;
 
-  <!-- etiquetas superiores -->
-  <div id="etiquetas-superiores" class="etiquetas-superiores">No hay etiquetas disponibles</div>
+    if (rating >= 80) {
+        return {
+            min: { os: "Windows 10 64-bit", cpu: "Intel i5-8400", ram: "8 GB", gpu: "GTX 1060", storage: "50 GB" },
+            rec: { os: "Windows 11", cpu: "Intel i7-10700K", ram: "16 GB", gpu: "RTX 2070", storage: "50 GB SSD" }
+        };
+    }
 
-  <div class="grid-juego">
+    if (rating >= 60) {
+        return {
+            min: { os: "Windows 10", cpu: "Intel i3-8100", ram: "8 GB", gpu: "GTX 960", storage: "35 GB" },
+            rec: { os: "Windows 10", cpu: "Intel i5-8400", ram: "12 GB", gpu: "GTX 1650 Super", storage: "35 GB SSD" }
+        };
+    }
 
-    <!-- imagen principal del juego -->
-    <div id="imagen-juego" class="imagen-juego">
-        <p>Imagen no disponible</p>
-    </div>
+    return {
+        min: { os: "Windows 7", cpu: "Intel Core i3", ram: "6 GB", gpu: "GTX 750 Ti", storage: "20 GB" },
+        rec: { os: "Windows 10", cpu: "Intel Core i5", ram: "8 GB", gpu: "GTX 1050 Ti", storage: "25 GB" }
+    };
+}
 
-    <!-- panel derecho para comprar -->
-    <aside class="panel-compra">
-      <h3>Precio</h3>
+// mini galeria
+function renderMiniGaleria(arr) {
+    const gal = document.getElementById("mini-galeria");
 
-      <button id="comprar-ahora" class="btn-principal" data-id="">Comprar Ahora</button>
-      <button id="agregar-carrito" class="btn-secundario" data-id="">🛒 Agregar al Carrito</button>
+    if (!arr || arr.length === 0) {
+        gal.innerHTML = `<p>No hay imagenes disponibles</p>`;
+        return;
+    }
 
-      <div id="btn-trailer" class="btn-secundario boton-texto">▶ Ver Trailer</div>
+    gal.innerHTML = arr
+        .map(s => {
+            const img = s.image || s;
+            return `<div class="item-galeria rect" style="background-image:url('${img}')"></div>`;
+        })
+        .join("");
+}
 
-      <!-- informacion rapida del juego -->
-      <div class="informacion-rapida">
-        <p><strong>Fecha de lanzamiento:</strong> --</p>
-        <p><strong>Genero:</strong> --</p>
-        <p><strong>Plataformas:</strong> --</p>
-        <p><strong>Valoracion:</strong> --</p>
-      </div>
-    </aside>
+// juegos similares rawg
+async function renderSimilares(game) {
+    const cont = document.getElementById("similares");
 
-  </div>
+    let genres = (game.genres || []).slice(0, 3).map(g => g.slug);
+    let all = [];
 
-  <!-- mini galeria de imagenes -->
-  <section id="mini-galeria" class="mini-galeria">
-      <p>No hay imagenes disponibles</p>
-  </section>
+    for (const g of genres) {
+        try {
+            const res = await rawgFetch(`${RAWG_BASE}/games?key=${RAWG_KEY}&genres=${g}&ordering=-rating&page_size=3`);
+            if (res?.results) all.push(...res.results);
+        } catch { }
+    }
 
-  <!-- descripcion del juego -->
-  <section class="descripcion-juego">
-    <h2>Acerca del juego</h2>
-    <p id="descripcion-juego">Descripcion no disponible</p>
+    // limpiar duplicados
+    all = [...new Map(all.map(j => [j.id, j])).values()].slice(0, 4);
 
-    <div class="cajas-informacion">
-      <div class="caja-info">
-        <h3 id="caja-valoracion">--</h3><p>Valoracion</p>
-      </div>
+    cont.innerHTML = all.map(j => {
+        const price = fakePrice();
+        return `
+            <a href="juego.html?id=${j.id}" class="similar-card">
+                <div class="sim-img" style="background-image:url('${j.background_image}')"></div>
+                <div class="sim-info">
+                    <h4>${j.name}</h4>
+                    <p class="sim-genre">${j.genres?.[0]?.name || "—"}</p>
+                    <p class="sim-price">Bs. ${price.final}</p>
+                </div>
+            </a>
+        `;
+    }).join("");
+}
 
-      <div class="caja-info">
-        <h3 id="caja-ano">--</h3><p>Lanzamiento</p>
-      </div>
+// carrito
+function agregarAlCarrito(game, price) {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-      <div class="caja-info">
-        <h3 id="caja-plataformas">--</h3><p>Plataformas</p>
-      </div>
+    carrito.push({
+        id: game.id,
+        nombre: game.name,
+        genero: game.genres?.[0]?.name || "Videojuego",
+        img: game.background_image,
+        precio: price.final
+    });
 
-      <div class="caja-info">
-        <h3 id="caja-descuento">--</h3><p>Descuento</p>
-      </div>
-    </div>
-  </section>
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
 
-  <!-- caracteristicas del juego -->
-  <section class="caracteristicas">
-    <h2>Caracteristicas</h2>
-    <ul id="lista-caracteristicas" class="lista-caracteristicas">
-      <li>No se encontraron caracteristicas</li>
-    </ul>
-  </section>
+// inicializar pagina
+async function init() {
+    const id = getID();
+    if (!id) return;
 
-  <!-- requisitos del sistema -->
-  <section class="requisitos">
-    <h2>Requisitos del sistema</h2>
+    const game = await rawgFetch(`${RAWG_BASE}/games/${id}?key=${RAWG_KEY}`, id);
+    const price = fakePrice();
 
-    <div class="grid-requisitos">
+    if (!game) {
+        document.getElementById("titulo-juego").textContent = "No se pudo cargar el juego";
+        return;
+    }
 
-      <div id="req-minimo" class="requisito">
-        <h3>MINIMO</h3>
-        <p>No se encontraron requisitos minimos</p>
-      </div>
+    document.getElementById("titulo-juego").textContent = game.name;
 
-      <div id="req-recomendado" class="requisito">
-        <h3>RECOMENDADO</h3>
-        <p>No se encontraron requisitos recomendados</p>
-      </div>
+    document.getElementById("valoracion-juego").textContent = `⭐ ${game.rating}`;
+    document.getElementById("ano-juego").textContent = game.released?.substring(0, 4) || "—";
+    document.getElementById("etiquetas-superiores").textContent =
+        game.genres.map(g => g.name).join(" • ");
 
-    </div>
-  </section>
+    const img = document.getElementById("imagen-juego");
+    img.style.backgroundImage = `url('${game.background_image}')`;
+    img.innerHTML = "";
 
-  <!-- juegos similares -->
-  <section class="juegos-similares">
-    <h2>Juegos similares</h2>
-    <div id="similares" class="rejilla-similares">
-      <p>No se encontraron juegos similares</p>
-    </div>
-  </section>
+    document.querySelector(".informacion-rapida").innerHTML = `
+        <p><strong>Fecha de lanzamiento:</strong> ${game.released}</p>
+        <p><strong>Genero:</strong> ${game.genres.map(g => g.name).join(", ")}</p>
+        <p><strong>Plataformas:</strong> ${game.platforms.map(p => p.platform.name).join(", ")}</p>
+        <p><strong>Valoracion:</strong> ${game.rating}</p>
+    `;
 
-</main>
+    document.getElementById("caja-valoracion").textContent = game.rating;
+    document.getElementById("caja-ano").textContent = game.released?.substring(0, 4);
+    document.getElementById("caja-plataformas").textContent = game.platforms.length;
+    document.getElementById("caja-descuento").textContent = price.discount + "%";
 
-<footer class="pie-pagina">
-  <div class="contenedor pie-grid">
+    document.getElementById("descripcion-juego").textContent =
+        game.description_raw || "Sin descripcion";
 
-    <!-- columna informacion -->
-    <div class="col">
-      <h4>Sobre KFCZONE</h4>
-      <p>Tu tienda de videojuegos de confianza</p>
-      <p>© 2025 KFCZONE - Derechos reservados</p>
-    </div>
+    let shots = [];
+    try {
+        const s = await rawgFetch(`${RAWG_BASE}/games/${id}/screenshots?key=${RAWG_KEY}`);
+        shots = s?.results || [];
+    } catch {
+        shots = (game.screenshots || []).map(img => ({ image: img }));
+    }
+    renderMiniGaleria(shots);
 
-    <!-- columna enlaces -->
-    <div class="col">
-      <h4>Tienda</h4>
-      <a href="tienda.html">Catalogo</a><br>
-      <a href="explorar.html">Explorar</a><br>
-      <a href="ofertas.html">Ofertas</a><br>
-      <a href="carrito.html">Carrito</a>
-    </div>
+    document.getElementById("lista-caracteristicas").innerHTML =
+        game.tags.slice(0, 6).map(t => `<li>${t.name}</li>`).join("");
 
-    <!-- columna soporte -->
-    <div class="col">
-      <h4>Soporte</h4>
-      <span>Centro de ayuda</span><br>
-      <span>Contacto</span><br>
-    </div>
+    const reqs = generateRequirements(game);
 
-    <!-- columna legal -->
-    <div class="col">
-      <h4>Legal</h4>
-      <span>Terminos</span><br>
-      <span>Politica de privacidad</span><br>
-    </div>
+    document.getElementById("req-minimo").innerHTML = `
+        <h3>Minimo</h3>
+        <p><strong>OS:</strong> ${reqs.min.os}</p>
+        <p><strong>CPU:</strong> ${reqs.min.cpu}</p>
+        <p><strong>RAM:</strong> ${reqs.min.ram}</p>
+        <p><strong>GPU:</strong> ${reqs.min.gpu}</p>
+        <p><strong>Almacenamiento:</strong> ${reqs.min.storage}</p>
+    `;
 
-  </div>
-</footer>
+    document.getElementById("req-recomendado").innerHTML = `
+        <h3>Recomendado</h3>
+        <p><strong>OS:</strong> ${reqs.rec.os}</p>
+        <p><strong>CPU:</strong> ${reqs.rec.cpu}</p>
+        <p><strong>RAM:</strong> ${reqs.rec.ram}</p>
+        <p><strong>GPU:</strong> ${reqs.rec.gpu}</p>
+        <p><strong>Almacenamiento:</strong> ${reqs.rec.storage}</p>
+    `;
 
-<!-- scripts -->
-<script src="../Archivos JS/juego.js"></script>
-<script src="../Archivos JS/global.js"></script>
+    await renderSimilares(game);
 
-</body>
-</html>
+    document.querySelector(".btn-principal").onclick = (e) => {
+        e.preventDefault();
+        agregarAlCarrito(game, price);
+        window.location.href = "carrito.html";
+    };
+
+    document.querySelector(".btn-secundario").onclick = (e) => {
+        e.preventDefault();
+        agregarAlCarrito(game, price);
+        alert("Agregado al carrito");
+    };
+
+    document.getElementById("btn-trailer").onclick = async () => {
+        const url = await getTrailer(game.name);
+        if (url) window.open(url, "_blank");
+    };
+}
+
+document.addEventListener("DOMContentLoaded", init);
