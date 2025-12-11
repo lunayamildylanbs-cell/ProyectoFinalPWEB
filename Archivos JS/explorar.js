@@ -1,26 +1,17 @@
-// =======================
-// CONFIG RAWG
-// =======================
+// config rawg
 const RAWG_KEY = "66d71aea9962478a92839e951481b374";
-const RAWG_BASE = "https://api.rawg.io/api";   // SIN PROXY
+const RAWG_BASE = "https://api.rawg.io/api";
 
+// helper fetch json
+const pedirJson = url => fetch(url).then(r => {
+  if (!r.ok) throw new Error(r.status);
+  return r.json();
+});
 
-// =======================
-// FETCH CON FALLBACK
-// =======================
-const pedirJson = url =>
-  fetch(url).then(r => {
-    if (!r.ok) throw new Error(r.status);
-    return r.json();
-  });
-
-
-// =======================
-// PRECIO ALEATORIO
-// =======================
+// precio random
 const precioAleatorio = () => {
   const base = +(Math.random() * 40 + 12).toFixed(2);
-  if (Math.random() < 0.45) {
+  if (Math.random() < .45) {
     const d = Math.floor(Math.random() * 60) + 5;
     return {
       final: +(base * (1 - d / 100)).toFixed(2),
@@ -31,68 +22,49 @@ const precioAleatorio = () => {
   return { final: base, inicial: base, descuento: 0 };
 };
 
-
-// =======================
-// UTILIDADES
-// =======================
+// utilidades
 function escapeHtml(str = "") {
   return String(str)
-    .replace(/&/g, "&amp;").replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
+function getParams() { return new URLSearchParams(location.search); }
+function renderHtml(node, html) { node.innerHTML = html; }
 
-function getParams() {
-  return new URLSearchParams(location.search);
-}
-
-function renderHtml(node, html) {
-  node.innerHTML = html;
-}
-
-
-// =======================
-// RENDER TARJETAS
-// =======================
+// render tarjetas (CON ARREGLO DE IMAGENES)
 function renderTarjetas(container, juegos) {
   renderHtml(container, "");
 
   juegos.forEach(j => {
+
     const p = j.precio || precioAleatorio();
 
-    // IMAGEN PRINCIPAL + BACKUP DE SCREENSHOT
+    // -------- FIX DE IMAGENES --------
     const img =
       j.background_image ||
       j.short_screenshots?.[0]?.image ||
-      "/Archivos_IMG/noimg.png";
+      "./Archivos IMG/noimg.png";
 
     container.innerHTML += `
       <article class="juego-card">
         <a href="juego.html?id=${j.id}" class="juego-enlace">
-
-          <div class="juego-img"
-               style="background-image:url('${img}')">
-          </div>
+          <div class="juego-img" style="background-image:url('${img}')"></div>
 
           <div class="juego-info">
             <h3 class="juego-nombre">${escapeHtml(j.name)}</h3>
-
             <p class="juego-detalles">
-              ⭐ ${j.rating ?? "—"} •
-              ${j.genres?.map(g=>g.name).join(", ") ?? "—"}
+              ⭐ ${j.rating ?? "—"} • ${j.genres?.map(g=>g.name).join(", ") ?? "—"}
             </p>
-
             <div class="juego-precio">
               ${
                 p.descuento
                 ? `
-                    <span class="precio-tachado">Bs. ${p.inicial.toFixed(2)}</span>
-                    <span class="precio-final">Bs. ${p.final.toFixed(2)}</span>
-                    <span class="precio-desc">${p.descuento}%</span>
-                  `
+                  <span class="precio-tachado">Bs. ${p.inicial.toFixed(2)}</span>
+                  <span class="precio-final">Bs. ${p.final.toFixed(2)}</span>
+                  <span class="precio-desc">${p.descuento}%</span>
+                `
                 : `<span class="precio-final">Bs. ${p.final.toFixed(2)}</span>`
               }
             </div>
-
           </div>
         </a>
       </article>
@@ -100,6 +72,7 @@ function renderTarjetas(container, juegos) {
   });
 }
 
+// placeholder
 function placeholder(c) {
   renderHtml(c, `
     <div class="placeholder">
@@ -109,10 +82,7 @@ function placeholder(c) {
   `);
 }
 
-
-// =======================
-// CONSTRUIR URL RAWG
-// =======================
+// construir url rawg
 function construirURL() {
   const p = getParams();
   let url = `${RAWG_BASE}/games?key=${RAWG_KEY}&page_size=20`;
@@ -150,10 +120,7 @@ function construirURL() {
   return url;
 }
 
-
-// =======================
-// CARGA EXPLORAR CON FALLBACK
-// =======================
+// init explorar (con fallback corregido)
 async function initExplorar() {
   const cont = document.getElementById("contenedor-juegos");
   if (!cont) return;
@@ -167,31 +134,29 @@ async function initExplorar() {
     if (!juegos.length) return placeholder(cont);
 
     juegos = juegos.map(j => ({ ...j, precio: precioAleatorio() }));
+
     renderTarjetas(cont, juegos);
 
   } catch (e) {
-    console.warn("RAWG falló. Cargando JSON local…");
+    console.warn("rawg fallo. cargando json local ./Archivos JSON/explorar.json");
 
     try {
-      const local = await fetch("/Archivos_JSON/explorar.json").then(r => r.json());
-
+      const local = await fetch("./Archivos JSON/explorar.json").then(r => r.json());
       let juegos = local.results || [];
+
       if (!juegos.length) return placeholder(cont);
 
       juegos = juegos.map(j => ({ ...j, precio: precioAleatorio() }));
       renderTarjetas(cont, juegos);
 
-    } catch {
-      console.error("No hay RAWG ni JSON local");
+    } catch (err) {
+      console.error("no hay rawg ni json local");
       placeholder(cont);
     }
   }
 }
 
-
-// =======================
-// BUSCADOR
-// =======================
+// buscador rawg
 async function buscar(query) {
   const cont = document.getElementById("contenedor-juegos");
   if (!query.trim()) return;
@@ -211,9 +176,9 @@ async function buscar(query) {
     renderTarjetas(cont, juegos);
 
   } catch {
-    console.warn("RAWG falló. Fallback local…");
+    console.warn("buscador rawg fallo. usando json local");
 
-    const local = await fetch("/Archivos_JSON/explorar.json").then(r => r.json());
+    const local = await fetch("./Archivos JSON/explorar.json").then(r => r.json());
     let juegos = local.results.filter(x =>
       x.name.toLowerCase().includes(query.toLowerCase())
     );
@@ -225,10 +190,7 @@ async function buscar(query) {
   }
 }
 
-
-// =======================
-// EVENTOS
-// =======================
+// eventos
 document.addEventListener("DOMContentLoaded", () => {
   initExplorar();
 
