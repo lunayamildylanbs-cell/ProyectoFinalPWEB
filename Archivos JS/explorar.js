@@ -8,7 +8,7 @@ const pedirJson = url => fetch(url).then(r => {
   return r.json();
 });
 
-// precio random (igual al tuyo)
+// precio random
 const precioAleatorio = () => {
   const base = +(Math.random() * 40 + 12).toFixed(2);
   if (Math.random() < .45) {
