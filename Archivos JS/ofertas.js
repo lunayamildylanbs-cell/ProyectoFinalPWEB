@@ -1,125 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KFCZONE - Ofertas</title>
-    <link rel="stylesheet" href="../Archivos CSS/global.css">
-    <link rel="stylesheet" href="../Archivos CSS/ofertas.css">
-</head>
-<body>
+// config rawg api
+const RAWG_KEY = "66d71aea9962478a92839e951481b374";
+const RAWG_BASE = "https://corsproxy.io/?https://api.rawg.io/api";
 
-<header class="encabezado">
-  <div class="contenedor encabezado-interno">
-    <a href="tienda.html" class="logo">
-      <img src="../Archivos IMG/logo.png" alt="KFCZONE Logo" class="logo-KFCZONE">
-    </a>
+// helper fetch con manejo de error
+async function rawgFetch(url) {
+    const r = await fetch(url);
+    if (!r.ok) throw new Error("error rawg: " + r.status);
+    return r.json();
+}
 
-    <!-- navegacion principal -->
-    <nav class="navegacion-principal">
-      <a href="tienda.html" class="enlace-nav">TIENDA</a>
-      <a href="explorar.html" class="enlace-nav">EXPLORAR</a>
-      <a href="ofertas.html" class="enlace-nav activo">OFERTAS</a>
-    </nav>
+// generar precio fake con descuento
+function precioFake() {
+    const base = Math.round((10 + Math.random() * 40) * 100) / 100;
+    const desc = Math.floor(Math.random() * 70);
+    const final = Math.round((base * (1 - desc / 100)) * 100) / 100;
+    return { base, final, desc };
+}
 
-    <div class="zona-acciones">
-      
-        <a href="carrito.html" class="btn-icon">🛒</a>
-        <button type="button" class="btn-icon">👤</button>
-    </div>
+// evitar inyeccion html
+function escapeHtml(str = "") {
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
 
-    <!-- boton hamburguesa -->
-    <button class="hamburguesa" id="hamburguesa">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</header>
 
-<main class="contenedor">
+// obtener juego principal destacado
+async function cargarOfertaPrincipal() {
+    let url = `${URL_API}/games?key=${RAWG_KEY}&ordering=-suggestions_count&page_size=10`;
+    let data = await rawgFetch(url);
 
-  <!-- titulo pagina -->
-  <section class="titulo-ofertas">
-    <h1>Ofertas especiales</h1>
-    <p class="subtitulo">Ahorra en grandes juegos por tiempo limitado</p>
-    <div class="temporizador" aria-hidden="true">⏳ Termina pronto</div>
-  </section>
+    let juegos = data.results;
 
-  <!-- seccion oferta principal -->
-  <section class="oferta-principal">
-    <h2>Oferta principal</h2>
-    <div class="tarjeta-oferta-grande" id="oferta-principal">
-        <div class="placeholder">
-            <h3>No se encontro la oferta principal</h3>
-            <p>No se pudo cargar la informacion del juego</p>
-        </div>
-    </div>
-  </section>
+    // si viene vacío busca otra página
+    if (!juegos.length) {
+        url = `${URL_API}/games?key=${RAWG_KEY}&ordering=-rating&page_size=10&page=2`;
+        data = await rawgFetch(url);
+        juegos = data.results;
+    }
 
-  <!-- seccion ofertas flash -->
-  <section class="ofertas-flash">
-    <h2>Ofertas flash</h2>
-    <div class="rejilla-flash" id="ofertas-flash">
-        <div class="placeholder">
-            <h4>No hay ofertas flash disponibles</h4>
-            <p>No se pudo cargar la lista de juegos</p>
-        </div>
-    </div>
-  </section>
+    renderOfertaPrincipal(juegos[0]);
+}
 
-  <!-- seccion ofertas de la semana -->
-  <section class="ofertas-semana">
-    <h2>Ofertas de la Semana</h2>
-    <div class="rejilla-semana" id="ofertas-semana">
-        <div class="placeholder">
-            <h4>No hay ofertas de la semana disponibles</h4>
-            <p>No se pudo cargar la lista de juegos</p>
-        </div>
-    </div>
-  </section>
 
-</main>
+// pintar oferta principal
+function renderOfertaPrincipal(juego) {
+    const precio = precioFake();
+    const img = juego.background_image || "/Archivos IMG/noimg.png";
 
-<footer class="pie-pagina">
-  <div class="contenedor pie-grid">
+    document.getElementById("oferta-principal").innerHTML = `
+        <a href="juego.html?id=${juego.id}" class="tarjeta-oferta">
+            <div class="img" style="background-image:url('${img}')"></div>
 
-    <!-- columna informacion -->
-    <div class="col">
-      <h4>Sobre KFCZONE</h4>
-      <p>Tu tienda de videojuegos de confianza</p>
-      <p>© 2025 KFCZONE - Derechos reservados</p>
-    </div>
+            <div class="info">
+                <h3>${escapeHtml(juego.name)}</h3>
+                <p class="genero">${juego.genres?.[0]?.name || "Videojuego"}</p>
 
-    <!-- columna enlaces -->
-    <div class="col">
-      <h4>Tienda</h4>
-      <a href="tienda.html">Catalogo</a><br>
-      <a href="explorar.html">Explorar</a><br>
-      <a href="ofertas.html">Ofertas</a><br>
-      <a href="carrito.html">Carrito</a>
-    </div>
+                <div class="precios">
+                    <span class="precio-final">Bs. ${precio.final}</span>
+                    <span class="precio-original">Bs. ${precio.base}</span>
+                    <span class="descuento">-${precio.desc}%</span>
+                </div>
 
-    <!-- columna soporte -->
-    <div class="col">
-      <h4>Soporte</h4>
-      <span>Centro de Ayuda</span><br>
-      <span>Contacto</span><br>
-    </div>
+                <button class="btn-comprar">Ver juego</button>
+            </div>
+        </a>
+    `;
+}
 
-    <!-- columna legal -->
-    <div class="col">
-      <h4>Legal</h4>
-      <span>Terminos</span><br>
-      <span>Politica de Privacidad</span><br>
-    </div>
 
-  </div>
-</footer>
+// render lista pequeña
+function renderLista(container, juegos) {
+    container.innerHTML = juegos.map(j => {
+        const precio = precioFake();
+        const img = j.background_image || "/Archivos IMG/noimg.png";
 
-<!-- scripts -->
-<script src="../Archivos JS/ofertas.js"></script>
-<script src="../Archivos JS/global.js"></script>
+        return `
+            <a href="juego.html?id=${j.id}" class="tarjeta-small">
+                <div class="img-small" style="background-image:url('${img}')"></div>
 
-</body>
-</html>
+                <div class="info-small">
+                    <h4>${escapeHtml(j.name)}</h4>
+                    <p class="gen">${j.genres?.[0]?.name || "—"}</p>
+
+                    <div class="precios-small">
+                        <span class="final">Bs. ${precio.final}</span>
+                        <span class="orig">Bs. ${precio.base}</span>
+                        <span class="desc">-${precio.desc}%</span>
+                    </div>
+                </div>
+            </a>
+        `;
+    }).join("");
+}
+
+
+// cargar secciones iniciales
+async function cargarOfertas() {
+    try {
+        await cargarOfertaPrincipal();
+
+        const flash = await rawgFetch(`${URL_API}/games?key=${RAWG_KEY}&page_size=5`);
+        renderLista(document.getElementById("ofertas-flash"), flash.results);
+
+        const semana = await rawgFetch(`${URL_API}/games?key=${RAWG_KEY}&ordering=released&page_size=8`);
+        renderLista(document.getElementById("ofertas-semana"), semana.results);
+
+    } catch (e) {
+        console.warn("Error RAWG. Cargando datos locales...", e);
+
+        // Fallback
+        const local = await fetch("../Archivos JSON/ofertas.json").then(r => r.json());
+
+        renderOfertaPrincipal(local.destacado[0]);
+
+        renderLista(document.getElementById("ofertas-flash"), local.flash);
+        renderLista(document.getElementById("ofertas-semana"), local.semana);
+    }
+}
+
+
+// iniciar
+document.addEventListener("DOMContentLoaded", cargarOfertas);
