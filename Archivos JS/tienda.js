@@ -1,166 +1,150 @@
-// config rawg y youtube
-const API = "66d71aea9962478a92839e951481b374";
-const RAWG_BASE = "https://corsproxy.io/?https://api.rawg.io/api";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFCZONE - Tienda</title>
+    <link rel="stylesheet" href="../Archivos CSS/global.css">
+    <link rel="stylesheet" href="../Archivos CSS/tienda.css">
+</head>
+<body>
 
-// helper fetch json con error
-const pedirJson = url => fetch(url).then(r => {
-  if (!r.ok) throw new Error(r.status);
-  return r.json();
-});
+<header class="encabezado">
+  <div class="contenedor encabezado-interno">
+    <a href="tienda.html" class="logo">
+      <img src="../Archivos IMG/logo.png" alt="KFCZONE Logo" class="logo-KFCZONE">
+    </a>
 
-// precio random
-const precioAleatorio = () => {
-  const base = +(Math.random() * 40 + 8).toFixed(2);
-  if (Math.random() < .4) {
-    const d = Math.floor(Math.random() * 60) + 10;
-    return {
-      final: +(base * (1 - d / 100)).toFixed(2),
-      inicial: base,
-      descuento: d
-    };
-  }
-  return { final: base, inicial: base, descuento: 0 };
-};
+    <!-- navegacion principal -->
+    <nav class="navegacion-principal">
+      <a href="tienda.html" class="enlace-nav activo">TIENDA</a>
+      <a href="explorar.html" class="enlace-nav">EXPLORAR</a>
+      <a href="ofertas.html" class="enlace-nav">OFERTAS</a>
+    </nav>
 
-// atajo dom
-const el = (sel) => document.getElementById(sel);
+    <div class="zona-acciones">
 
-// render html directo
-const renderHtml = (node, html) => node.innerHTML = html;
-
-// pintar destacado grande
-function mostrarDestacado(box, j) {
-  renderHtml(box, `
-    <div class="destacado-inner" style="background-image:url('${j.background_image}')">
-      <div class="dest-overlay"></div>
-      <div class="dest-content">
-        <span class="dest-etiqueta">DESTACADO</span>
-        <h2 class="dest-titulo">${j.name}</h2>
-        <p class="dest-descripcion">${(j.description_raw || "").slice(0,200)}...</p>
-        <div class="dest-info">
-          <span class="dest-badge">⭐ ${j.rating}</span>
-          <span class="dest-badge">${j.genres?.[0]?.name || ""}</span>
-        </div>
-        <a href="juego.html?id=${j.id}" class="dest-boton">Ver mas →</a>
-      </div>
+        <a href="carrito.html" class="btn-icon">🛒</a>
+        <button type="button" class="btn-icon">👤</button >
     </div>
-  `);
-}
 
-// plantilla tarjetas de ofertas
-const tplOferta = j => {
-  const p = j.precio;
-  return `
-    <article class="oferta-card">
-      <a href="juego.html?id=${j.id}" class="oferta-enlace">
-        <div class="oferta-img" style="background-image:url('${j.background_image}')"></div>
-        <div class="oferta-info">
-          <div class="oferta-nombre">${j.name}</div>
-          <small class="oferta-genero">${j.genres?.[0]?.name || ""}</small>
+    <!-- boton hamburguesa -->
+    <button class="hamburguesa" id="hamburguesa">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
 
-          <div class="oferta-precio">
-            ${p.descuento ? `
-              <span class="precio-tachado">Bs. ${p.inicial.toFixed(2)}</span>
-              <span class="precio-final">Bs. ${p.final.toFixed(2)}</span>
-              <span class="precio-desc">${p.descuento}%</span>
-            ` : `
-              <span class="precio-final">Bs. ${p.final.toFixed(2)}</span>
-            `}
+<main class="contenedor">
+  <h1 class="titulo-principal">TIENDA DE JUEGOS KFCZONE</h1>
+
+  <!-- seccion destacado -->
+  <section id="seccion-destacado" class="destacado">
+      <div class="placeholder">
+          <h3> Juego destacado no encontrado</h3>
+          <p> No se pudo cargar la informacion del juego</p>
+      </div>
+  </section>
+
+  <!-- seccion ofertas especiales -->
+  <section class="ofertas-especiales">
+    <div class="cabecera-seccion">
+      <h2>Ofertas Especiales</h2>
+      <a href="ofertas.html" class="ver-todas">Ver todas →</a>
+    </div>
+
+    <div id="lista-ofertas" class="rejilla-ofertas">
+        <div class="placeholder">
+            <h4> No hay ofertas disponibles</h4>
+            <p> No se pudo cargar la lista de juegos</p>
+        </div>
+    </div>
+  </section>
+
+  <section class="nuevos-top">
+
+    <!-- nuevos lanzamientos -->
+    <div class="nuevos">
+      <div class="cabecera-seccion">
+        <h3> Nuevos Lanzamientos</h3>
+        <a href="explorar.html" class="ver-mas">Ver mas →</a>
+      </div>
+
+      <div id="lista-nuevos" class="lista-nuevos">
+          <div class="placeholder">
+              <h4> No se encontraron nuevos lanzamientos</h4>
+              <p> Error al cargar el nuevo lanzamiento</p>
           </div>
-        </div>
-      </a>
-    </article>
-  `;
-};
-
-// plantilla lista nuevos lanzamientos
-const tplNuevo = j => {
-  const p = j.precio;
-  return `
-    <div class="nuevo-item">
-      <div class="nuevo-info">
-        <div class="nuevo-img" style="background-image:url('${j.background_image}')"></div>
-        <div>
-          <a href="juego.html?id=${j.id}" class="nuevo-nombre">${j.name}</a>
-          <small class="nuevo-detalles">
-            ⭐ ${j.rating} • ${j.genres?.map(x => x.name).join(", ")} • ${j.released?.slice(0,4)}
-          </small>
-        </div>
-      </div>
-
-      <div class="nuevo-precio">
-        ${p.descuento ? `<span class="precio-tachado">Bs. ${p.inicial.toFixed(2)}</span>` : ""}
-        <span class="precio-final">Bs. ${p.final.toFixed(2)}</span>
       </div>
     </div>
-  `;
-};
 
-// plantilla top lista simple
-const tplTop = j => `
-  <li class="top-item">
-    <a href="juego.html?id=${j.id}" class="top-nombre">${j.name} — ⭐ ${j.rating}</a>
-    <span class="top-precio">Bs. ${j.precio.final.toFixed(2)}</span>
-  </li>
-`;
+    <!-- lista top ventas -->
+    <aside class="top-ventas">
+      <h3>Top Ventas</h3>
 
-// cargar precio
-async function cargarPrecio(j) {
-  try {
-    const det = await pedirJson(`${URL_API}/games/${j.id}?key=${API}`);
-    j.description_raw = det.description_raw;
-    j.precio = precioAleatorio();
-  } catch {
-    j.precio = precioAleatorio();
-  }
-}
+      <ol id="lista-top" class="lista-top">
+          <li> No se pudo cargar el top de ventas</li>
+      </ol>
 
-// cargar lista de juegos
-async function cargarLista(url, size) {
-  const r = await pedirJson(`${url}&page_size=${size}`);
-  const juegos = r.results;
+    </aside>
 
-  await Promise.all(juegos.map(cargarPrecio));
+  </section>
 
-  return juegos;
-}
+  <!-- categorias de juegos -->
+  <section class="categorias">
+    <h3>Explorar por categoria</h3>
+    <div class="rejilla-categorias">
+      <a href="explorar.html?categoria=Action" class="categoria">Accion<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=Adventure" class="categoria">Aventura<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=RPG" class="categoria">RPG<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=Shooter" class="categoria">Shooter<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=Strategy" class="categoria">Estrategia<br><small>Ver juegos</small></a>
+      <a href="explorar.html?categoria=Strategy" class="categoria">Casual<br><small>Ver juegos</small></a>
+    </div>
+  </section>
 
-// iniciar tienda
-async function iniciarTienda() {
-  try {
-    const [top] = await cargarLista(`${URL_API}/games?key=${API}&ordering=-suggestions_count`, 1);
+</main>
 
-    mostrarDestacado(el("seccion-destacado"), top);
+<footer class="pie-pagina">
+  <div class="contenedor pie-grid">
+    
+    <!-- columna informacion -->
+    <div class="col">
+      <h4>Sobre KFCZONE</h4>
+      <p>Tu tienda de videojuegos de confianza</p>
+      <p>© 2025 KFCZONE - Derechos reservados</p>
+    </div>
 
-    const [ofertas, nuevos, topV] = await Promise.all([
-      cargarLista(`${URL_API}/games?key=${API}&ordering=-added`, 6),
-      cargarLista(`${URL_API}/games?key=${API}&ordering=rating`, 6),
-      cargarLista(`${URL_API}/games?key=${API}&ordering=-playtime`, 8)
-    ]);
+    <!-- columna enlaces -->
+    <div class="col">
+      <h4>Tienda</h4>
+      <a href="tienda.html">Catalogo</a><br>
+      <a href="explorar.html">Explorar</a><br>
+      <a href="ofertas.html">Ofertas</a><br>
+      <a href="carrito.html">Carrito</a>
+    </div>
 
-    renderHtml(el("lista-ofertas"), `<div class="ofertas-grid">${ofertas.slice(0,3).map(tplOferta).join("")}</div>`);
-    renderHtml(el("lista-nuevos"), nuevos.slice(0,4).map(tplNuevo).join(""));
-    renderHtml(el("lista-top"), topV.map(tplTop).join(""));
+    <!-- columna soporte -->
+    <div class="col">
+      <h4>Soporte</h4>
+      <span>Centro de Ayuda</span><br>
+      <span>Contacto</span><br>
+    </div>
 
-  } catch (e) {
-    console.warn("ERROR RAWG. Cargando datos locales...");
+    <!-- columna legal -->
+    <div class="col">
+      <h4>Legal</h4>
+      <span>Terminos</span><br>
+      <span>Politica de Privacidad</span><br>
+    </div>
+  </div>
+</footer>
 
-    const local = await fetch("../Archivos JSON/tienda.json").then(r => r.json());
+<!-- scripts -->
+<script src="../Archivos JS/tienda.js"></script>
+<script src="../Archivos JS/global.js"></script>
 
-    const destacado = local.destacado[0];
-    destacado.precio = precioAleatorio();
-
-    mostrarDestacado(el("seccion-destacado"), destacado);
-
-    const ofertas = local.ofertas.map(j => ({ ...j, precio: precioAleatorio() }));
-    const nuevos = local.nuevos.map(j => ({ ...j, precio: precioAleatorio() }));
-    const top = local.top.map(j => ({ ...j, precio: precioAleatorio() }));
-
-    renderHtml(el("lista-ofertas"), `<div class="ofertas-grid">${ofertas.slice(0,3).map(tplOferta).join("")}</div>`);
-    renderHtml(el("lista-nuevos"), nuevos.slice(0,4).map(tplNuevo).join(""));
-    renderHtml(el("lista-top"), top.map(tplTop).join(""));
-  }
-}
-
-
-document.addEventListener("DOMContentLoaded", iniciarTienda);
+</body>
+</html>
