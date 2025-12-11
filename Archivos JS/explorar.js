@@ -1,14 +1,14 @@
 // config rawg
 const RAWG_KEY = "66d71aea9962478a92839e951481b374";
-const RAWG_BASE = "https://api.rawg.io/api";
+const RAWG_BASE = "https://corsproxy.io/?https://api.rawg.io/api";
 
-// helper fetch json
+// fetch con fallback json local (misma logica que tienda)
 const pedirJson = url => fetch(url).then(r => {
   if (!r.ok) throw new Error(r.status);
   return r.json();
 });
 
-// precio random
+// precio random (igual al tuyo)
 const precioAleatorio = () => {
   const base = +(Math.random() * 40 + 12).toFixed(2);
   if (Math.random() < .45) {
@@ -27,22 +27,22 @@ function escapeHtml(str = "") {
   return String(str)
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
-function getParams() { return new URLSearchParams(location.search); }
-function renderHtml(node, html) { node.innerHTML = html; }
 
-// render tarjetas (CON ARREGLO DE IMAGENES)
+function getParams() {
+  return new URLSearchParams(location.search);
+}
+
+function renderHtml(node, html) {
+  node.innerHTML = html;
+}
+
+// render tarjetas
 function renderTarjetas(container, juegos) {
   renderHtml(container, "");
 
   juegos.forEach(j => {
-
     const p = j.precio || precioAleatorio();
-
-    // -------- FIX DE IMAGENES --------
-    const img =
-      j.background_image ||
-      j.short_screenshots?.[0]?.image ||
-      "./Archivos IMG/noimg.png";
+    const img = j.background_image || "/Archivos IMG/noimg.png";
 
     container.innerHTML += `
       <article class="juego-card">
@@ -54,6 +54,7 @@ function renderTarjetas(container, juegos) {
             <p class="juego-detalles">
               ⭐ ${j.rating ?? "—"} • ${j.genres?.map(g=>g.name).join(", ") ?? "—"}
             </p>
+
             <div class="juego-precio">
               ${
                 p.descuento
@@ -72,7 +73,6 @@ function renderTarjetas(container, juegos) {
   });
 }
 
-// placeholder
 function placeholder(c) {
   renderHtml(c, `
     <div class="placeholder">
@@ -82,7 +82,7 @@ function placeholder(c) {
   `);
 }
 
-// construir url rawg
+// construir url rawg segun filtros
 function construirURL() {
   const p = getParams();
   let url = `${RAWG_BASE}/games?key=${RAWG_KEY}&page_size=20`;
@@ -120,7 +120,7 @@ function construirURL() {
   return url;
 }
 
-// init explorar (con fallback corregido)
+// carga explorar con fallback json (misma logica que tienda)
 async function initExplorar() {
   const cont = document.getElementById("contenedor-juegos");
   if (!cont) return;
@@ -138,12 +138,12 @@ async function initExplorar() {
     renderTarjetas(cont, juegos);
 
   } catch (e) {
-    console.warn("rawg fallo. cargando json local ./Archivos JSON/explorar.json");
+    console.warn("rawg fallo. cargando json local /Archivos JSON/explorar.json");
 
     try {
-      const local = await fetch("./Archivos JSON/explorar.json").then(r => r.json());
-      let juegos = local.results || [];
+      const local = await fetch("/Archivos JSON/explorar.json").then(r => r.json());
 
+      let juegos = local.results || [];
       if (!juegos.length) return placeholder(cont);
 
       juegos = juegos.map(j => ({ ...j, precio: precioAleatorio() }));
@@ -156,7 +156,7 @@ async function initExplorar() {
   }
 }
 
-// buscador rawg
+// buscador rawg con fallback local
 async function buscar(query) {
   const cont = document.getElementById("contenedor-juegos");
   if (!query.trim()) return;
@@ -176,9 +176,9 @@ async function buscar(query) {
     renderTarjetas(cont, juegos);
 
   } catch {
-    console.warn("buscador rawg fallo. usando json local");
+    console.warn("buscador rawg fallo. usando explorar.json local");
 
-    const local = await fetch("./Archivos JSON/explorar.json").then(r => r.json());
+    const local = await fetch("/Archivos JSON/explorar.json").then(r => r.json());
     let juegos = local.results.filter(x =>
       x.name.toLowerCase().includes(query.toLowerCase())
     );
