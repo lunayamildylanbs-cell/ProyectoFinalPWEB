@@ -1,49 +1,23 @@
-// ==========================
-// CONFIG RAWG API
-// ==========================
+// config rawg api
 const RAWG_KEY = "66d71aea9962478a92839e951481b374";
 const RAWG_BASE = "https://api.rawg.io/api";
 
-// ==========================
-// FETCH RAWG con manejo de error
-// ==========================
+// helper fetch con manejo de error
 async function rawgFetch(url) {
-    try {
-        const r = await fetch(url);
-        if (!r.ok) throw new Error("RAWG error " + r.status);
-        return r.json();
-    } catch (e) {
-        console.warn("⚠ RAWG FALLÓ:", e);
-        return null; // ← importantísimo
-    }
+    const r = await fetch(url);
+    if (!r.ok) throw new Error("error rawg: " + r.status);
+    return r.json();
 }
 
-// ==========================
-// Cargar JSON local si RAWG falla
-// ==========================
-async function cargarLocal() {
-    try {
-        const r = await fetch("./Archivos_JSON/ofertas.json");
-        return r.json();
-    } catch (e) {
-        console.error("⚠ Error cargando JSON local:", e);
-        return null;
-    }
-}
-
-// ==========================
-// Generar precio fake
-// ==========================
+// generar precio fake con descuento
 function precioFake() {
-    const base = +(10 + Math.random() * 40).toFixed(2);
+    const base = Math.round((10 + Math.random() * 40) * 100) / 100;
     const desc = Math.floor(Math.random() * 70);
-    const final = +(base * (1 - desc / 100)).toFixed(2);
+    const final = Math.round((base * (1 - desc / 100)) * 100) / 100;
     return { base, final, desc };
 }
 
-// ==========================
-// Evitar inyección HTML
-// ==========================
+// evitar inyeccion html
 function escapeHtml(str = "") {
     return String(str)
         .replace(/&/g, "&amp;")
@@ -51,9 +25,7 @@ function escapeHtml(str = "") {
         .replace(/>/g, "&gt;");
 }
 
-// ==========================
-// Filtrar juegos adultos
-// ==========================
+// quitar juegos adultos por rating o tags
 function filtrarAdultos(lista) {
     return lista.filter(j => {
         const rating = j.esrb_rating?.name?.toLowerCase() || "";
@@ -70,32 +42,27 @@ function filtrarAdultos(lista) {
     });
 }
 
-// ==========================
-// OFERTA PRINCIPAL
-// ==========================
+// obtener juego principal destacado
 async function cargarOfertaPrincipal() {
-    // ---- 1) INTENTAR RAWG ----
-    let data = await rawgFetch(
-        `${RAWG_BASE}/games?key=${RAWG_KEY}&ordering=-suggestions_count&page_size=10`
-    );
+    let url = `${RAWG_BASE}/games?key=${RAWG_KEY}&ordering=-suggestions_count&page_size=10`;
+    let data = await rawgFetch(url);
 
-    if (data && data.results?.length) {
-        const juegos = filtrarAdultos(data.results);
-        if (juegos.length) return renderOfertaPrincipal(juegos[0]);
+    let juegos = filtrarAdultos(data.results);
+
+    // si no hay juegos limpios, busca otra pagina
+    if (!juegos.length) {
+        url = `${RAWG_BASE}/games?key=${RAWG_KEY}&ordering=-rating&page_size=10&page=2`;
+        data = await rawgFetch(url);
+        juegos = filtrarAdultos(data.results);
     }
 
-    // ---- 2) SI RAWG FALLA → JSON LOCAL ----
-    const local = await cargarLocal();
-    if (local?.destacado?.length) {
-        return renderOfertaPrincipal(local.destacado[0]);
-    }
-
-    console.error("❌ No se encontró ni RAWG ni JSON local.");
+    renderOfertaPrincipal(juegos[0]);
 }
 
+// pintar oferta principal en html
 function renderOfertaPrincipal(juego) {
     const precio = precioFake();
-    const img = juego.background_image || "./Archivos_IMG/noimg.png";
+    const img = juego.background_image || "/Archivos IMG/noimg.png";
 
     document.getElementById("oferta-principal").innerHTML = `
         <a href="juego.html?id=${juego.id}" class="tarjeta-oferta">
@@ -117,15 +84,13 @@ function renderOfertaPrincipal(juego) {
     `;
 }
 
-// ==========================
-// LISTAS (flash/semana)
-// ==========================
+// render lista de tarjetas pequeñas
 function renderLista(container, juegos) {
     const filtrados = filtrarAdultos(juegos);
 
     container.innerHTML = filtrados.map(j => {
         const precio = precioFake();
-        const img = j.background_image || "./Archivos_IMG/noimg.png";
+        const img = j.background_image || "/Archivos IMG/noimg.png";
 
         return `
             <a href="juego.html?id=${j.id}" class="tarjeta-small">
@@ -146,31 +111,23 @@ function renderLista(container, juegos) {
     }).join("");
 }
 
-// ==========================
-// Cargar ofertas completas
-// ==========================
+// cargar secciones iniciales
 async function cargarOfertas() {
-    // Siempre intentar cargar RAWG primero
-    await cargarOfertaPrincipal();
+    try {
+        await cargarOfertaPrincipal();
 
-    // ---------- FLASH ----------
-    let flash = await rawgFetch(`${RAWG_BASE}/games?key=${RAWG_KEY}&page_size=5`);
-    if (!flash) {
-        const local = await cargarLocal();
-        flash = { results: local.flash };
-    }
-    renderLista(document.getElementById("ofertas-flash"), flash.results);
+        // ofertas flash random
+        const flash = await rawgFetch(`${RAWG_BASE}/games?key=${RAWG_KEY}&page_size=5`);
+        renderLista(document.getElementById("ofertas-flash"), flash.results);
 
-    // ---------- SEMANA ----------
-    let semana = await rawgFetch(`${RAWG_BASE}/games?key=${RAWG_KEY}&ordering=released&page_size=8`);
-    if (!semana) {
-        const local = await cargarLocal();
-        semana = { results: local.semana };
+        // ofertas semana ordenadas por fecha
+        const semana = await rawgFetch(`${RAWG_BASE}/games?key=${RAWG_KEY}&ordering=released&page_size=8`);
+        renderLista(document.getElementById("ofertas-semana"), semana.results);
+
+    } catch (e) {
+        console.error(e);
     }
-    renderLista(document.getElementById("ofertas-semana"), semana.results);
 }
 
-// ==========================
-// INICIAR
-// ==========================
+// iniciar al cargar pagina
 document.addEventListener("DOMContentLoaded", cargarOfertas);
